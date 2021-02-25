@@ -79,8 +79,11 @@ if __name__ == "__main__":
 <title>Reco profiling autoreport test</title>
 </head>
 <body>
-Automatic reco profiling based on <a href="https://github.com/cms-sw/cms-bot/tree/master/reco_profiling">cmssw/cms-bot</a>, <a href="https://cmssdt.cern.ch/jenkins/job/release-run-reco-profiling/">jenkins</a> and <a href="https://github.com/ico1036/ServiceWork">Jiwoong's service work</a>.<br>
-Datapath: {dirname}<br>
+Automatic reco profiling based on <a href="https://github.com/cms-sw/cms-bot/tree/master/reco_profiling">cmssw/cms-bot</a>,
+<a href="https://cmssdt.cern.ch/jenkins/job/release-run-reco-profiling/">jenkins</a> and
+<a href="https://github.com/ico1036/ServiceWork">Jiwoong's service work</a>.<br>
+This report is prepared automatically using <a href="https://github.com/jpata/cms-reco-profiling">this script</a> and the data in {dirname}.<br>
+
 {releases_str}
 </body>
 </html>
