@@ -56,4 +56,5 @@ if __name__ == "__main__":
         parsed = parseRelease(dirname, release, arch)
         results[release] = parsed
         results[release]["arch"] = arch
+
     print(yaml.dump(results, default_flow_style=False))

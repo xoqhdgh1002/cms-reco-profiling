@@ -1,0 +1,13 @@
+CMSSW_11_3_0_pre2:
+  arch: slc7_amd64_gcc900
+  step3_cpu_event: 123.733283
+  step3_peak_rss: 4283.52
+  step4_cpu_event: 6.096682
+  step4_peak_rss: 1798.35
+CMSSW_11_3_0_pre3:
+  arch: slc7_amd64_gcc900
+  step3_cpu_event: 132.655669
+  step3_peak_rss: 4489.12
+  step4_cpu_event: 6.632454
+  step4_peak_rss: 1860.5
+
