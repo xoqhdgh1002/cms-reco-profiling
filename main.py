@@ -1,6 +1,7 @@
 #!/usr/bin/python
 import os
 from itertools import ifilter
+import yaml
 
 dirname = "/eos/cms/store/user/cmsbuild/profiling/data/"
 arch = "slc7_amd64_gcc900"
@@ -46,46 +47,13 @@ def parseRelease(dirname, release, arch):
 
     return ret
 
-def formatRelease(release, parsed):
-    ret = """
-<h2>{release}</h2>
-<ul>
-<li>Step3</li>
-
-<ul>
-<li>CPU time: {step3_cpu_event:.2f} s/ev </li>
-<li>peak RSS: {step3_peak_rss:.2f} MB </li>
-</ul>
-
-<li>Step4</li>
-<ul>
-<li>CPU time: {step4_cpu_event:.2f} s/ev </li>
-<li>peak RSS: {step4_peak_rss:.2f} MB </li>
-</ul>
-</ul>
-""".format(release=release, **parsed)
-    return ret
-
 if __name__ == "__main__":
     releases = getReleases(dirname)
 
     releases_str = ""
+    results = {}
     for release in releases:
         parsed = parseRelease(dirname, release, arch)
-        releases_str += formatRelease(release, parsed)     
-    rep = """Content-type:text/html\r\n\r\n
-<html>
-<head>
-<title>Reco profiling autoreport test</title>
-</head>
-<body>
-Automatic reco profiling based on <a href="https://github.com/cms-sw/cms-bot/tree/master/reco_profiling">cmssw/cms-bot</a>,
-<a href="https://cmssdt.cern.ch/jenkins/job/release-run-reco-profiling/">jenkins</a> and
-<a href="https://github.com/ico1036/ServiceWork">Jiwoong's service work</a>.<br>
-This report is prepared automatically using <a href="https://github.com/jpata/cms-reco-profiling">this script</a> and the data in {dirname}.<br>
-
-{releases_str}
-</body>
-</html>
-""".format(dirname=dirname, releases_str=releases_str)
-    print(rep)
+        results[release] = parsed
+        results[release]["arch"] = arch
+    print(yaml.dump(results, default_flow_style=False))
