@@ -1,7 +1,6 @@
 # Automatic reco profiling
 
-## Results
-
+Results:
 - [11_3_X](results/11_3_X.yaml)
 
 ## Updating
