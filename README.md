@@ -1,6 +1,6 @@
 # Automatic reco profiling
 
-Automatically extract key measurements from the reco profiling outputs in EOS, stores the results in YAML files for future use.
+Automatically extracts key measurements from the reco profiling outputs in EOS, stores the results in YAML files for future use.
 
 ```
 [jpata@lxplus7108 reco-profiling]$ ./main.py
