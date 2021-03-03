@@ -29,22 +29,30 @@ def getPeakRSS(fn):
     rss_vals = [float(r.split()[7]) for r in result]
     return max(rss_vals)
 
-def parseStep(dirname, release, arch, step):
-    tmi = os.path.join(dirname, release, arch, "{}_TimeMemoryInfo.log".format(step))
+def parseStep(dirname, release, arch, wf, step):
+    tmi = os.path.join(dirname, release, arch, wf, "{}_TimeMemoryInfo.log".format(step))
     cpu_event = getCPUEvent(tmi)
     peak_rss = getPeakRSS(tmi)
     return {"cpu_event": cpu_event, "peak_rss": peak_rss}
 
-def parseRelease(dirname, release, arch):
-    step3_data = parseStep(dirname, release, arch, "step3")
-    step4_data = parseStep(dirname, release, arch, "step4")
-    
-    ret = {}
-    for k, v in step3_data.items():
-        ret["step3_" + k] = v
-    for k, v in step4_data.items():
-        ret["step4_" + k] = v
+def getWorkflows(dirname, release, arch):
+    ls = os.listdir(os.path.join(dirname, release, arch))
+    ls = [x for x in ls if "." in x and int(x.split(".")[0])]
+    return ls
 
+def parseRelease(dirname, release, arch):
+    wfs = getWorkflows(dirname, release, arch)
+    ret = {}
+    for wf in wfs:
+        step3_data = parseStep(dirname, release, arch, wf, "step3")
+        step4_data = parseStep(dirname, release, arch, wf, "step4")
+        
+        ret_wf = {}
+        for k, v in step3_data.items():
+            ret_wf["step3_" + k] = v
+        for k, v in step4_data.items():
+            ret_wf["step4_" + k] = v
+        ret[wf.replace(".", "p")] = ret_wf
     return ret
 
 if __name__ == "__main__":
