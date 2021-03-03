@@ -11,6 +11,12 @@ def getFileSize(fn):
     ret = os.path.getsize(fn)
     return ret
 
+def makeIgProfSummaryMEM(infile, outfile):
+    os.system("igprof-analyse --top 1000 --demangle --gdb -r MEM_LIVE {} | bzip2 -9 > {}".format(infile, outfile))
+
+def makeIgProfSummaryCPU(infile, outfile):
+    os.system("igprof-analyse --top 1000 --demangle --gdb -r PERF_TICKS {} | bzip2 -9 > {}".format(infile, outfile))
+
 def getReleases(dirname):
     ls = os.listdir(dirname)
     ls = [x for x in ls if x.startswith("CMSSW_")]
@@ -41,6 +47,13 @@ def parseStep(dirname, release, arch, wf, step):
     cpu_event = getCPUEvent(tmi)
     peak_rss = getPeakRSS(tmi)
     file_size = getFileSize(rootfile)
+
+    igprof_outpath = "results/igprof/{}/{}/{}".format(release.replace("CMSSW_", ""), wf, step)
+    if not os.path.isdir(igprof_outpath):
+        os.makedirs(igprof_outpath)
+    makeIgProfSummaryCPU(os.path.join(base, "{}_igprofCPU.gz".format(step)), os.path.join(igprof_outpath, "cpu.txt.bz2"))
+    makeIgProfSummaryMEM(os.path.join(base, "{}_igprofMEM.gz".format(step)), os.path.join(igprof_outpath, "mem.txt.bz2"))
+
     return {"cpu_event": cpu_event, "peak_rss": peak_rss, "file_size": file_size}
 
 def getWorkflows(dirname, release, arch):
