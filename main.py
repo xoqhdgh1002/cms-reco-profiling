@@ -1,10 +1,15 @@
-#!/usr/bin/python
+#!/usr/bin/env python
 import os
 from itertools import ifilter
 import yaml
+import subprocess
 
 dirname = "/eos/cms/store/user/cmsbuild/profiling/data/"
 arch = "slc7_amd64_gcc900"
+
+def getFileSize(fn):
+    ret = os.path.getsize(fn)
+    return ret
 
 def getReleases(dirname):
     ls = os.listdir(dirname)
@@ -30,10 +35,13 @@ def getPeakRSS(fn):
     return max(rss_vals)
 
 def parseStep(dirname, release, arch, wf, step):
-    tmi = os.path.join(dirname, release, arch, wf, "{}_TimeMemoryInfo.log".format(step))
+    base = os.path.join(dirname, release, arch, wf)
+    tmi = os.path.join(base, "{}_TimeMemoryInfo.log".format(step))
+    rootfile = os.path.join(base, "{}.root.unused".format(step))
     cpu_event = getCPUEvent(tmi)
     peak_rss = getPeakRSS(tmi)
-    return {"cpu_event": cpu_event, "peak_rss": peak_rss}
+    file_size = getFileSize(rootfile)
+    return {"cpu_event": cpu_event, "peak_rss": peak_rss, "file_size": file_size}
 
 def getWorkflows(dirname, release, arch):
     ls = os.listdir(os.path.join(dirname, release, arch))
