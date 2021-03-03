@@ -3,9 +3,18 @@ import os
 from itertools import ifilter
 import yaml
 import subprocess
+import sys
+import fnmatch
 
-dirname = "/eos/cms/store/user/cmsbuild/profiling/data/"
-arch = "slc7_amd64_gcc900"
+def parse_args():
+    import argparse
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--profile-data", type=str, default="/eos/cms/store/user/cmsbuild/profiling/data/", help="profiling data location")
+    parser.add_argument("--scram-arch", type=str, default="slc7_amd64_gcc900", help="Look for profile files in this scram arch directory")
+    parser.add_argument("--release-pattern", type=str, help="Glob string to filter releases that are going to be processed", default="*")
+    parser.add_argument("--outfile", type=str, help="output yaml file", default="out.yaml")
+    args = parser.parse_args()
+    return args
 
 def getFileSize(fn):
     ret = os.path.getsize(fn)
@@ -62,6 +71,7 @@ def getWorkflows(dirname, release, arch):
     return ls
 
 def parseRelease(dirname, release, arch):
+    print("parsing {} {} {}".format(dirname, release, arch))
     wfs = getWorkflows(dirname, release, arch)
     ret = {}
     for wf in wfs:
@@ -77,13 +87,18 @@ def parseRelease(dirname, release, arch):
     return ret
 
 if __name__ == "__main__":
-    releases = getReleases(dirname)
+    args = parse_args()
+    releases = getReleases(args.profile_data)
 
     releases_str = ""
     results = {}
     for release in releases:
-        parsed = parseRelease(dirname, release, arch)
-        results[release] = parsed
-        results[release]["arch"] = arch
+        if fnmatch.fnmatch(release, args.release_pattern):
+            parsed = parseRelease(args.profile_data, release, args.scram_arch)
+            results[release] = parsed
+            results[release]["arch"] = args.scram_arch
+        else:
+            print("skipping {}".format(release))
 
-    print(yaml.dump(results, default_flow_style=False))
+    with open(args.outfile, "w") as fi:
+        fi.write(yaml.dump(results, default_flow_style=False))
