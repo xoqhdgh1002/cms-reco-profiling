@@ -56,7 +56,7 @@ def nameStack(stack):
         return stack[-1]
     return "other"
 
-def makeIgProfGroupedCSV(infile, outfile): 
+def makeIgProfGrouped(infile, outfile): 
     fi = bz2.BZ2File(infile, "rb")
     
     function_stacks = []
@@ -89,7 +89,7 @@ def makeIgProfGroupedCSV(infile, outfile):
 
     with open(outfile, "w") as of:
         for k, v in sorted(ret.items(), key=lambda x: x[1], reverse=True):
-            of.write("{},{:.2f}\n".format(k,v))
+            of.write("{};{:.2f}\n".format(k,v))
 
 def getFileSize(fn):
     ret = os.path.getsize(fn)
@@ -97,11 +97,11 @@ def getFileSize(fn):
 
 def makeIgProfSummaryMEM(infile, outfile):
     os.system("igprof-analyse --top 1000 --demangle --gdb -r MEM_LIVE {} | bzip2 -9 > {}".format(infile, outfile))
-    makeIgProfGroupedCSV(outfile, outfile.replace(".txt.bz2", "_grouped.csv"))
+    makeIgProfGrouped(outfile, outfile.replace(".txt.bz2", "_grouped.csv"))
 
 def makeIgProfSummaryCPU(infile, outfile):
     os.system("igprof-analyse --top 1000 --demangle --gdb -r PERF_TICKS {} | bzip2 -9 > {}".format(infile, outfile))
-    makeIgProfGroupedCSV(outfile, outfile.replace(".txt.bz2", "_grouped.csv"))
+    makeIgProfGrouped(outfile, outfile.replace(".txt.bz2", "_grouped.csv"))
 
 def getReleases(dirname):
     ls = os.listdir(dirname)
