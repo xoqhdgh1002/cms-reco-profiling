@@ -1,3 +1,12 @@
+CMSSW_11_3_0_pre1:
+  23434p21:
+    step3_cpu_event: 87.342074
+    step3_file_size: 1958293996
+    step3_peak_rss: 4282.15
+    step4_cpu_event: 4.47015
+    step4_file_size: 27043458
+    step4_peak_rss: 2000.64
+  arch: slc7_amd64_gcc900
 CMSSW_11_3_0_pre2:
   23434p21:
     step3_cpu_event: 84.188918

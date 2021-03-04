@@ -1,0 +1,16 @@
+edm::EventProcessor::init,315538808.00
+pat::PATIsolatedTrackProducer::PATIsolatedTrackProducer,49147027.00
+PoolOutputModule,34692565.00
+other,24263324.00
+pat::PATPackedCandidateProducer::produce,11783776.00
+edmplugin::SharedLibrary::SharedLibrary,4990544.00
+edm::ProducerBase::registerProducts,4953448.00
+RecoTauProducer::RecoTauProducer,4362026.00
+ObjectSelector<SingleElementCollectionSelector<std::vector<pat::TriggerObjectStandAlone,std::allocator<pat::TriggerObjectStandAlone>>,StringCutObjectSelector<pat::TriggerObjectStandAlone,false>,std::vector<pat::TriggerObjectStandAlone,std::allocator<pat::TriggerObjectStandAlone>>,std::vector<pat::TriggerObjectStandAloneconst*,std::allocator<pat::TriggerObjectStandAloneconst*>>,helper::SelectionPointerAdder<std::vector<pat::TriggerObjectStandAloneconst*,std::allocator<pat::TriggerObjectStandAloneconst*>>>>,std::vector<pat::TriggerObjectStandAlone,std::allocator<pat::TriggerObjectStandAlone>>,NonNullNumberSelector,helper::NullPostProcessor<std::vector<pat::TriggerObjectStandAlone,std::allocator<pat::TriggerObjectStandAlone>>,edm::stream::EDFilter<>>,helper::CollectionStoreManager<std::vector<pat::TriggerObjectStandAlone,std::allocator<pat::TriggerObjectStandAlone>>,helper::IteratorToObjectConverter<std::vector<pat::TriggerObjectStandAlone,std::allocator<pat::TriggerObjectStandAlone>>>>,helper::ObjectSelectorBase<std::vector<pat::TriggerObjectStandAlone,std::allocator<pat::TriggerObjectStandAlone>>,edm::stream::EDFilter<>>,reco::modules::SingleElementCollectionSelectorEventSetupInit<SingleElementCollectionSelector<std::vector<pat::TriggerObjectStandAlone,std::allocator<pat::TriggerObjectStandAlone>>,StringCutObjectSelector<pat::TriggerObjectStandAlone,false>,std::vector<pat::TriggerObjectStandAlone,std::allocator<pat::TriggerObjectStandAlone>>,std::vector<pat::TriggerObjectStandAloneconst*,std::allocator<pat::TriggerObjectStandAloneconst*>>,helper::SelectionPointerAdder<std::vector<pat::TriggerObjectStandAloneconst*,std::allocator<pat::TriggerObjectStandAloneconst*>>>>>>::ObjectSelector,3145728.00
+DeepMETProducer::DeepMETProducer,2804832.00
+RecoTauPiZeroProducer::RecoTauPiZeroProducer,2097152.00
+edm::ProductRegistryHelper::addToRegistry,1321480.00
+JetConstituentSelector<reco::GenJet,std::vector<edm::FwdPtr<reco::GenParticle>,std::allocator<edm::FwdPtr<reco::GenParticle>>>>::JetConstituentSelector,1048576.00
+InputModule,779120.00
+ElectronMVAEstimatorRun2::ElectronMVAEstimatorRun2,439072.00
+DeepMETProducer::produce,399296.00

@@ -5,6 +5,7 @@ import yaml
 import subprocess
 import sys
 import fnmatch
+import bz2
 
 def parse_args():
     import argparse
@@ -16,15 +17,91 @@ def parse_args():
     args = parser.parse_args()
     return args
 
+class CallStack:
+    def __init__(self, func_data, measurement):
+        self.func_data = func_data
+        self.measurement = measurement
+
+def cleanStack(stack):
+    new_stack = []
+    for s in stack:
+        if not s in new_stack and len(s)>0:
+            new_stack.append(s)
+        if s.endswith("doEvent"):
+            break
+        if s.endswith("beginRun"):
+            break
+        if s.endswith("edm::Factory::makeModule"):
+            break
+        if s.endswith("edm::EventProcessor::init"):
+            break
+    return new_stack
+
+def nameStack(stack):
+    if "edm::PoolOutputModule::write" in stack:
+        return "PoolOutputModule"
+    elif "TBasket::ReadBasketBuffers" in stack or "TBranch::GetEntry" in stack:
+        return "InputModule"
+    elif "edm::EventPrincipal::clearEventPrincipal" in stack:
+        return "edm::EventPrincipal::clearEventPrincipal"
+    elif len(stack)>0 and stack[-1].endswith("doEvent"):
+        for s in stack:
+            if "::produce" in s:
+                return s
+    elif len(stack)>0 and stack[-1].endswith("beginRun"):
+        return stack[-1]
+    elif len(stack)>0 and stack[-1].endswith("makeModule"):
+        return stack[-5]
+    elif len(stack)>0 and stack[-1].endswith("edm::EventProcessor::init"):
+        return stack[-1]
+    return "other"
+
+def makeIgProfGroupedCSV(infile, outfile): 
+    fi = bz2.BZ2File(infile, "rb")
+    
+    function_stacks = []
+    for line in fi.readlines():
+    
+        #new stack
+        if line.startswith("## "):
+            stack = []
+            stack_measurement = float(line.split()[3][1:].replace("'", ""))
+        #line in existing stack
+        elif line.startswith("#"):
+            line = line.replace("(anonymous namespace)::", "")
+            line = line.replace(", ", ",")
+            line = line[line.index(" ")+1:]
+            line = line.replace(" ", "")
+            if "(" in line:
+                line = line[:line.index("(")]
+                stack.append(line)
+        else:
+            function_stacks.append(CallStack(stack, stack_measurement))
+
+    ret = {}
+    for istack, stack in enumerate(function_stacks):
+        new_stack = cleanStack(stack.func_data)
+        if len(new_stack) > 0:
+            name = nameStack(new_stack)
+            if not name in ret:
+                ret[name] = 0
+            ret[name] += stack.measurement
+
+    with open(outfile, "w") as of:
+        for k, v in sorted(ret.items(), key=lambda x: x[1], reverse=True):
+            of.write("{},{:.2f}\n".format(k,v))
+
 def getFileSize(fn):
     ret = os.path.getsize(fn)
     return ret
 
 def makeIgProfSummaryMEM(infile, outfile):
     os.system("igprof-analyse --top 1000 --demangle --gdb -r MEM_LIVE {} | bzip2 -9 > {}".format(infile, outfile))
+    makeIgProfGroupedCSV(outfile, outfile.replace(".txt.bz2", "_grouped.csv"))
 
 def makeIgProfSummaryCPU(infile, outfile):
     os.system("igprof-analyse --top 1000 --demangle --gdb -r PERF_TICKS {} | bzip2 -9 > {}".format(infile, outfile))
+    makeIgProfGroupedCSV(outfile, outfile.replace(".txt.bz2", "_grouped.csv"))
 
 def getReleases(dirname):
     ls = os.listdir(dirname)
@@ -53,6 +130,9 @@ def parseStep(dirname, release, arch, wf, step):
     base = os.path.join(dirname, release, arch, wf)
     tmi = os.path.join(base, "{}_TimeMemoryInfo.log".format(step))
     rootfile = os.path.join(base, "{}.root.unused".format(step))
+    if not os.path.isfile(rootfile):
+        rootfile = os.path.join(base, "{}.root".format(step))
+
     cpu_event = getCPUEvent(tmi)
     peak_rss = getPeakRSS(tmi)
     file_size = getFileSize(rootfile)
