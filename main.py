@@ -19,6 +19,9 @@ def parse_args():
     args = parser.parse_args()
     return args
 
+def makeCirclesURL(release, arch, wf, step):
+    return "http://cms-reco-profiling.web.cern.ch/cms-reco-profiling/?local=false&dataset={release}%2F{arch}%2F{wf}%2F{step}_circles&resource=time_real&colours=default&groups=reco_PhaseII&threshold=0".format(release=release, arch=arch, wf=wf, step=step)
+
 class CallStack:
     def __init__(self, func_data, measurement):
         self.func_data = func_data
@@ -129,9 +132,6 @@ def getPeakRSS(fn):
     result = grep(fn, "RSS")
     rss_vals = [float(r.split()[7]) for r in result]
     return max(rss_vals)
-
-def makeCirclesURL(release, arch, wf, step):
-    return "http://cms-reco-profiling.web.cern.ch/cms-reco-profiling/?local=false&dataset={release}%2F{arch}%2F{wf}%2F{step}_circles&resource=time_real&colours=default&groups=reco_PhaseII&threshold=0".format(release=release, arch=arch, wf=wf, step=step)
 
 def parseStep(dirname, release, arch, wf, step, run_igprof_analysis=True, igprof_deploy_url=""):
     base = os.path.join(dirname, release, arch, wf)
