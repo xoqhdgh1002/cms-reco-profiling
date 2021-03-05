@@ -130,6 +130,9 @@ def getPeakRSS(fn):
     rss_vals = [float(r.split()[7]) for r in result]
     return max(rss_vals)
 
+def makeCirclesURL(release, arch, wf, step):
+    return "http://cms-reco-profiling.web.cern.ch/cms-reco-profiling/?local=false&dataset={release}%2F{arch}%2F{wf}%2F{step}_circles&resource=time_real&colours=default&groups=reco_PhaseII&threshold=0".format(release=release, arch=arch, wf=wf, step=step)
+
 def parseStep(dirname, release, arch, wf, step, run_igprof_analysis=True, igprof_deploy_url=""):
     base = os.path.join(dirname, release, arch, wf)
     tmi = os.path.join(base, "{}_TimeMemoryInfo.log".format(step))
@@ -156,7 +159,8 @@ def parseStep(dirname, release, arch, wf, step, run_igprof_analysis=True, igprof
         "peak_rss": peak_rss,
         "file_size": file_size,
         "igprof_cpu": igprof_deploy_url + igprof_cpu_file.replace("results/igprof", "releases").replace(".txt.bz2", ""),
-        "igprof_mem": igprof_deploy_url + igprof_mem_file.replace("results/igprof", "releases").replace(".txt.bz2", "")
+        "igprof_mem": igprof_deploy_url + igprof_mem_file.replace("results/igprof", "releases").replace(".txt.bz2", ""),
+        "circles": makeCirclesURL(release, arch, wf, step)
     }
 
 def getWorkflows(dirname, release, arch):
