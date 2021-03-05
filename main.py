@@ -11,9 +11,11 @@ def parse_args():
     import argparse
     parser = argparse.ArgumentParser()
     parser.add_argument("--profile-data", type=str, default="/eos/cms/store/user/cmsbuild/profiling/data/", help="profiling data location")
-    parser.add_argument("--scram-arch", type=str, default="slc7_amd64_gcc900", help="Look for profile files in this scram arch directory")
     parser.add_argument("--release-pattern", type=str, help="Glob string to filter releases that are going to be processed", default="*")
     parser.add_argument("--outfile", type=str, help="output yaml file", default="out.yaml")
+    parser.add_argument("--igprof-deploy-path", type=str, help="igprof-analyse cgi-bin deployment path", default="/eos/user/j/jpata/www/cgi-bin/data/releases/")
+    parser.add_argument("--igprof-deploy-url", type=str, help="igprof-analyse cgi-bin deployment URL", default="https://jpata.web.cern.ch/jpata/cgi-bin/igprof-navigator/")
+    parser.add_argument("--run-igprof-analysis", type=bool, help="if 1, parse the igprof results", default=False)
     args = parser.parse_args()
     return args
 
@@ -128,7 +130,7 @@ def getPeakRSS(fn):
     rss_vals = [float(r.split()[7]) for r in result]
     return max(rss_vals)
 
-def parseStep(dirname, release, arch, wf, step):
+def parseStep(dirname, release, arch, wf, step, run_igprof_analysis=True, igprof_deploy_url=""):
     base = os.path.join(dirname, release, arch, wf)
     tmi = os.path.join(base, "{}_TimeMemoryInfo.log".format(step))
     rootfile = os.path.join(base, "{}.root.unused".format(step))
@@ -140,25 +142,35 @@ def parseStep(dirname, release, arch, wf, step):
     file_size = getFileSize(rootfile)
 
     igprof_outpath = "results/igprof/{}/{}/{}".format(release.replace("CMSSW_", ""), wf, step)
-    if not os.path.isdir(igprof_outpath):
-        os.makedirs(igprof_outpath)
-    makeIgProfSummaryCPU(os.path.join(base, "{}_igprofCPU.gz".format(step)), os.path.join(igprof_outpath, "cpu.txt.bz2"))
-    makeIgProfSummaryMEM(os.path.join(base, "{}_igprofMEM.gz".format(step)), os.path.join(igprof_outpath, "mem.txt.bz2"))
+    igprof_cpu_file = os.path.join(igprof_outpath, "cpu.txt.bz2")
+    igprof_mem_file = os.path.join(igprof_outpath, "mem.txt.bz2")
 
-    return {"cpu_event": cpu_event, "peak_rss": peak_rss, "file_size": file_size}
+    if run_igprof_analysis:
+        if not os.path.isdir(igprof_outpath):
+            os.makedirs(igprof_outpath)
+        makeIgProfSummaryCPU(os.path.join(base, "{}_igprofCPU.gz".format(step)), igprof_cpu_file)
+        makeIgProfSummaryMEM(os.path.join(base, "{}_igprofMEM.gz".format(step)), igprof_mem_file)
+
+    return {
+        "cpu_event": cpu_event,
+        "peak_rss": peak_rss,
+        "file_size": file_size,
+        "igprof_cpu": igprof_deploy_url + igprof_cpu_file.replace("results/igprof", "releases").replace(".txt.bz2", ""),
+        "igprof_mem": igprof_deploy_url + igprof_mem_file.replace("results/igprof", "releases").replace(".txt.bz2", "")
+    }
 
 def getWorkflows(dirname, release, arch):
     ls = os.listdir(os.path.join(dirname, release, arch))
     ls = [x for x in ls if "." in x and int(x.split(".")[0])]
     return ls
 
-def parseRelease(dirname, release, arch):
+def parseRelease(dirname, release, arch, **kwargs):
     print("parsing {} {} {}".format(dirname, release, arch))
     wfs = getWorkflows(dirname, release, arch)
     ret = {}
     for wf in wfs:
-        step3_data = parseStep(dirname, release, arch, wf, "step3")
-        step4_data = parseStep(dirname, release, arch, wf, "step4")
+        step3_data = parseStep(dirname, release, arch, wf, "step3", **kwargs)
+        step4_data = parseStep(dirname, release, arch, wf, "step4", **kwargs)
         
         ret_wf = {}
         for k, v in step3_data.items():
@@ -168,19 +180,35 @@ def parseRelease(dirname, release, arch):
         ret[wf.replace(".", "p")] = ret_wf
     return ret
 
+def isValidScramArch(arch_string):
+    return arch_string.startswith("slc")
+
 if __name__ == "__main__":
     args = parse_args()
+
     releases = getReleases(args.profile_data)
 
-    releases_str = ""
+    #prepare the results
     results = {}
     for release in releases:
-        if fnmatch.fnmatch(release, args.release_pattern):
-            parsed = parseRelease(args.profile_data, release, args.scram_arch)
-            results[release] = parsed
-            results[release]["arch"] = args.scram_arch
-        else:
-            print("skipping {}".format(release))
+        for arch in os.listdir(os.path.join(args.profile_data, release)):
+            if isValidScramArch(arch):
+                if fnmatch.fnmatch(release, args.release_pattern):
+                    parsed = parseRelease(
+                        args.profile_data, release, arch,
+                        run_igprof_analysis=args.run_igprof_analysis,
+                        igprof_deploy_url=args.igprof_deploy_url,
+                    )
+                    results[release + "_" + arch] = parsed
+                else:
+                    print("skipping {}".format(release))
 
+    #copy SQL outputs
+    if os.access(args.igprof_deploy_path, os.W_OK):
+        os.system("./deploy.sh {}".format(args.igprof_deploy_path))
+    else:
+        print("igprof-analyse sql path is not writable: {}, skipping deployment".format(args.igprof_deploy_path))
+
+    #Write the summary yaml file
     with open(args.outfile, "w") as fi:
         fi.write(yaml.dump(results, default_flow_style=False))

@@ -1,9 +1,12 @@
-CMSSW_11_2_1:
+CMSSW_11_2_1_slc7_amd64_gcc900:
   23434p21:
     step3_cpu_event: 87.350441
     step3_file_size: 1958380366
+    step3_igprof_cpu: https://jpata.web.cern.ch/jpata/cgi-bin/igprof-navigator/releases/11_2_1/23434.21/step3/cpu
+    step3_igprof_mem: https://jpata.web.cern.ch/jpata/cgi-bin/igprof-navigator/releases/11_2_1/23434.21/step3/mem
     step3_peak_rss: 4645.64
     step4_cpu_event: 4.401678
     step4_file_size: 26863639
+    step4_igprof_cpu: https://jpata.web.cern.ch/jpata/cgi-bin/igprof-navigator/releases/11_2_1/23434.21/step4/cpu
+    step4_igprof_mem: https://jpata.web.cern.ch/jpata/cgi-bin/igprof-navigator/releases/11_2_1/23434.21/step4/mem
     step4_peak_rss: 1946.12
-  arch: slc7_amd64_gcc900
