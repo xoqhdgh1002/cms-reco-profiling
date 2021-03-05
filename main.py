@@ -98,10 +98,12 @@ def getFileSize(fn):
 def makeIgProfSummaryMEM(infile, outfile):
     os.system("igprof-analyse --top 1000 --demangle --gdb -r MEM_LIVE {} | bzip2 -9 > {}".format(infile, outfile))
     makeIgProfGrouped(outfile, outfile.replace(".txt.bz2", "_grouped.csv"))
+    os.system("igprof-analyse --sqlite -v --demangle --gdb -r MEM_LIVE {} | python fix-igprof-sql.py | sqlite3 {}".format(infile, outfile.replace(".txt.bz2", ".sql3")))
 
 def makeIgProfSummaryCPU(infile, outfile):
     os.system("igprof-analyse --top 1000 --demangle --gdb -r PERF_TICKS {} | bzip2 -9 > {}".format(infile, outfile))
     makeIgProfGrouped(outfile, outfile.replace(".txt.bz2", "_grouped.csv"))
+    os.system("igprof-analyse --sqlite -v --demangle --gdb {} | python fix-igprof-sql.py | sqlite3 {}".format(infile, outfile.replace(".txt.bz2", ".sql3")))
 
 def getReleases(dirname):
     ls = os.listdir(dirname)

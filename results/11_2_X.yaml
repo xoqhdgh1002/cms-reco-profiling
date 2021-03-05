@@ -1,0 +1,9 @@
+CMSSW_11_2_1:
+  23434p21:
+    step3_cpu_event: 87.350441
+    step3_file_size: 1958380366
+    step3_peak_rss: 4645.64
+    step4_cpu_event: 4.401678
+    step4_file_size: 26863639
+    step4_peak_rss: 1946.12
+  arch: slc7_amd64_gcc900
