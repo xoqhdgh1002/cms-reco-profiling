@@ -12,7 +12,7 @@ def parse_args():
     parser = argparse.ArgumentParser()
     parser.add_argument("--profile-data", type=str, default="/eos/cms/store/user/cmsbuild/profiling/data/", help="profiling data location")
     parser.add_argument("--release-pattern", type=str, help="Glob string to filter releases that are going to be processed", default="*")
-    parser.add_argument("--outfile", type=str, help="output yaml file", default="out.yaml")
+    parser.add_argument("--outfile", type=str, help="output yaml file", default="results/summary.yaml")
     parser.add_argument("--igprof-deploy-path", type=str, help="igprof-analyse cgi-bin deployment path", default="/eos/user/j/jpata/www/cgi-bin/data/releases/")
     parser.add_argument("--igprof-deploy-url", type=str, help="igprof-analyse cgi-bin deployment URL", default="https://jpata.web.cern.ch/jpata/cgi-bin/igprof-navigator/")
     parser.add_argument("--run-igprof-analysis", type=bool, help="if 1, parse the igprof results", default=False)
@@ -175,18 +175,48 @@ def parseRelease(dirname, release, arch, **kwargs):
     for wf in wfs:
         step3_data = parseStep(dirname, release, arch, wf, "step3", **kwargs)
         step4_data = parseStep(dirname, release, arch, wf, "step4", **kwargs)
-        
-        ret_wf = {}
-        for k, v in step3_data.items():
-            ret_wf["step3_" + k] = v
-        for k, v in step4_data.items():
-            ret_wf["step4_" + k] = v
+       
+        ret_wf = {} 
+        ret_wf["step3"] = step3_data
+        ret_wf["step4"] = step4_data
         ret[wf.replace(".", "p")] = ret_wf
     return ret
 
 def isValidScramArch(arch_string):
     return arch_string.startswith("slc")
 
+def formatValue(item, value):
+    units = {
+        "cpu_event": "s/ev",
+        "peak_rss": "MB",
+        "file_size": "MB"
+    }
+    if item == "file_size":
+        value = value/1000/1000
+    return "{:.2f} {}".format(value, units[item])
+
+def prepareReport(results):
+    out = ""
+    for release in sorted(results.keys()):
+        out += "- {}\n".format(release)
+        for wf in sorted(results[release].keys()):
+            out += "  - {}\n".format(wf)
+            for step in ["step3", "step4"]:
+                out += "    - {}\n".format(step)
+                for item in ["cpu_event", "peak_rss", "file_size"]:
+                    value = results[release][wf][step][item]
+                    out += "      - {}: {}\n".format(item, formatValue(item, value))
+
+                #Write out the igprof and circles links                
+                out += "      - profiles: "
+                prof_links = []
+                for item in ["igprof_cpu", "igprof_mem", "circles"]:
+                    value = results[release][wf][step][item]
+                    prof_links.append("[{}]({})".format(item, value))
+                out += ", ".join(prof_links) + "\n"
+
+    return out
+ 
 if __name__ == "__main__":
     args = parse_args()
 
@@ -208,10 +238,13 @@ if __name__ == "__main__":
                     print("skipping {}".format(release))
 
     #copy SQL outputs
-    if os.access(args.igprof_deploy_path, os.W_OK):
-        os.system("./deploy.sh {}".format(args.igprof_deploy_path))
-    else:
-        print("igprof-analyse sql path is not writable: {}, skipping deployment".format(args.igprof_deploy_path))
+    #if os.access(args.igprof_deploy_path, os.W_OK):
+    #    os.system("./deploy.sh {}".format(args.igprof_deploy_path))
+    #else:
+    #    print("igprof-analyse sql path is not writable: {}, skipping deployment".format(args.igprof_deploy_path))
+
+    with open(args.outfile.replace("yaml", "md"), "w") as fi:
+        fi.write(prepareReport(results))
 
     #Write the summary yaml file
     with open(args.outfile, "w") as fi:

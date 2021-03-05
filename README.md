@@ -1,8 +1,8 @@
 # Automatic reco profiling
 
 Results:
-- [11_2_X](results/11_2_X.yaml)
-- [11_3_X](results/11_3_X.yaml)
+- [formatted](results/summary.md)
+- [yaml](results/summary.yaml)
 
 ## Updating
 Automatically extracts key measurements from the reco profiling outputs in EOS, stores the results in YAML files for future use.

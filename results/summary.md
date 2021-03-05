@@ -1,0 +1,48 @@
+- CMSSW_11_2_1_slc7_amd64_gcc900
+  - 23434p21
+    - step3
+      - cpu_event: 87.35 s/ev
+      - peak_rss: 4645.64 MB
+      - file_size: 1958.00 MB
+      - profiles: [igprof_cpu](https://jpata.web.cern.ch/jpata/cgi-bin/igprof-navigator/releases/11_2_1/23434.21/step3/cpu), [igprof_mem](https://jpata.web.cern.ch/jpata/cgi-bin/igprof-navigator/releases/11_2_1/23434.21/step3/mem), [circles](http://cms-reco-profiling.web.cern.ch/cms-reco-profiling/?local=false&dataset=CMSSW_11_2_1%2Fslc7_amd64_gcc900%2F23434.21%2Fstep3_circles&resource=time_real&colours=default&groups=reco_PhaseII&threshold=0)
+    - step4
+      - cpu_event: 4.40 s/ev
+      - peak_rss: 1946.12 MB
+      - file_size: 26.00 MB
+      - profiles: [igprof_cpu](https://jpata.web.cern.ch/jpata/cgi-bin/igprof-navigator/releases/11_2_1/23434.21/step4/cpu), [igprof_mem](https://jpata.web.cern.ch/jpata/cgi-bin/igprof-navigator/releases/11_2_1/23434.21/step4/mem), [circles](http://cms-reco-profiling.web.cern.ch/cms-reco-profiling/?local=false&dataset=CMSSW_11_2_1%2Fslc7_amd64_gcc900%2F23434.21%2Fstep4_circles&resource=time_real&colours=default&groups=reco_PhaseII&threshold=0)
+- CMSSW_11_3_0_pre1_slc7_amd64_gcc900
+  - 23434p21
+    - step3
+      - cpu_event: 87.34 s/ev
+      - peak_rss: 4282.15 MB
+      - file_size: 1958.00 MB
+      - profiles: [igprof_cpu](https://jpata.web.cern.ch/jpata/cgi-bin/igprof-navigator/releases/11_3_0_pre1/23434.21/step3/cpu), [igprof_mem](https://jpata.web.cern.ch/jpata/cgi-bin/igprof-navigator/releases/11_3_0_pre1/23434.21/step3/mem), [circles](http://cms-reco-profiling.web.cern.ch/cms-reco-profiling/?local=false&dataset=CMSSW_11_3_0_pre1%2Fslc7_amd64_gcc900%2F23434.21%2Fstep3_circles&resource=time_real&colours=default&groups=reco_PhaseII&threshold=0)
+    - step4
+      - cpu_event: 4.47 s/ev
+      - peak_rss: 2000.64 MB
+      - file_size: 27.00 MB
+      - profiles: [igprof_cpu](https://jpata.web.cern.ch/jpata/cgi-bin/igprof-navigator/releases/11_3_0_pre1/23434.21/step4/cpu), [igprof_mem](https://jpata.web.cern.ch/jpata/cgi-bin/igprof-navigator/releases/11_3_0_pre1/23434.21/step4/mem), [circles](http://cms-reco-profiling.web.cern.ch/cms-reco-profiling/?local=false&dataset=CMSSW_11_3_0_pre1%2Fslc7_amd64_gcc900%2F23434.21%2Fstep4_circles&resource=time_real&colours=default&groups=reco_PhaseII&threshold=0)
+- CMSSW_11_3_0_pre2_slc7_amd64_gcc900
+  - 23434p21
+    - step3
+      - cpu_event: 84.19 s/ev
+      - peak_rss: 4936.54 MB
+      - file_size: 1894.00 MB
+      - profiles: [igprof_cpu](https://jpata.web.cern.ch/jpata/cgi-bin/igprof-navigator/releases/11_3_0_pre2/23434.21/step3/cpu), [igprof_mem](https://jpata.web.cern.ch/jpata/cgi-bin/igprof-navigator/releases/11_3_0_pre2/23434.21/step3/mem), [circles](http://cms-reco-profiling.web.cern.ch/cms-reco-profiling/?local=false&dataset=CMSSW_11_3_0_pre2%2Fslc7_amd64_gcc900%2F23434.21%2Fstep3_circles&resource=time_real&colours=default&groups=reco_PhaseII&threshold=0)
+    - step4
+      - cpu_event: 4.31 s/ev
+      - peak_rss: 1980.12 MB
+      - file_size: 26.00 MB
+      - profiles: [igprof_cpu](https://jpata.web.cern.ch/jpata/cgi-bin/igprof-navigator/releases/11_3_0_pre2/23434.21/step4/cpu), [igprof_mem](https://jpata.web.cern.ch/jpata/cgi-bin/igprof-navigator/releases/11_3_0_pre2/23434.21/step4/mem), [circles](http://cms-reco-profiling.web.cern.ch/cms-reco-profiling/?local=false&dataset=CMSSW_11_3_0_pre2%2Fslc7_amd64_gcc900%2F23434.21%2Fstep4_circles&resource=time_real&colours=default&groups=reco_PhaseII&threshold=0)
+- CMSSW_11_3_0_pre3_slc7_amd64_gcc900
+  - 23434p21
+    - step3
+      - cpu_event: 86.66 s/ev
+      - peak_rss: 4979.60 MB
+      - file_size: 1918.00 MB
+      - profiles: [igprof_cpu](https://jpata.web.cern.ch/jpata/cgi-bin/igprof-navigator/releases/11_3_0_pre3/23434.21/step3/cpu), [igprof_mem](https://jpata.web.cern.ch/jpata/cgi-bin/igprof-navigator/releases/11_3_0_pre3/23434.21/step3/mem), [circles](http://cms-reco-profiling.web.cern.ch/cms-reco-profiling/?local=false&dataset=CMSSW_11_3_0_pre3%2Fslc7_amd64_gcc900%2F23434.21%2Fstep3_circles&resource=time_real&colours=default&groups=reco_PhaseII&threshold=0)
+    - step4
+      - cpu_event: 4.79 s/ev
+      - peak_rss: 2047.82 MB
+      - file_size: 27.00 MB
+      - profiles: [igprof_cpu](https://jpata.web.cern.ch/jpata/cgi-bin/igprof-navigator/releases/11_3_0_pre3/23434.21/step4/cpu), [igprof_mem](https://jpata.web.cern.ch/jpata/cgi-bin/igprof-navigator/releases/11_3_0_pre3/23434.21/step4/mem), [circles](http://cms-reco-profiling.web.cern.ch/cms-reco-profiling/?local=false&dataset=CMSSW_11_3_0_pre3%2Fslc7_amd64_gcc900%2F23434.21%2Fstep4_circles&resource=time_real&colours=default&groups=reco_PhaseII&threshold=0)
