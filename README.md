@@ -11,6 +11,7 @@ Automatically extracts key measurements from the reco profiling outputs in EOS, 
 ```
 
 ## Useful links
+- CMS reco profiling landing page (WIP): http://cms-reco-profiling.web.cern.ch/cms-reco-profiling
 - EOS path: `/eos/cms/store/user/cmsbuild/profiling`
 - Jenkins jobs: https://cmssdt.cern.ch/jenkins/job/release-run-reco-profiling/
 - cmssw bot scripts that run the automatic profiling: https://github.com/cms-sw/cms-bot/tree/master/reco_profiling/
