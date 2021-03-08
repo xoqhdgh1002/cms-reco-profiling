@@ -32,7 +32,7 @@ RecoTauGenericJetRegionProducer<reco::PFJet,reco::PFCandidate>::produce;1.83
 CandPtrProjector::produce;1.26
 PFTauPrimaryVertexProducerBase::produce;1.21
 JetFlavourClustering::produce;1.06
-deep_tau::DeepTauBase::produce;0.98
+deep_tau::DeepTauBase::produce;1.02
 PFRecoTauTagInfoProducer::produce;0.77
 pat::PATLostTracks::produce;0.66
 DeepFlavourONNXJetTagsProducer::produce;0.66

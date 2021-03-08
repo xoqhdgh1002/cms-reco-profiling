@@ -1,6 +1,6 @@
-PoolOutputModule;1150.74
+PoolOutputModule;1149.53
 CAHitNtupletEDProducerT<CAHitQuadrupletGenerator>::produce;474.86
-cms::CkfTrackCandidateMakerBase::produceBase;439.35
+cms::CkfTrackCandidateMakerBase::produceBase;440.28
 ElectronSeedProducer::produce;421.81
 PrimaryVertexProducer::produce;382.16
 GsfTrackProducer::produce;289.28
@@ -16,8 +16,8 @@ CAHitNtupletEDProducerT<CAHitTripletGenerator>::produce;91.99
 ClusterTPAssociationProducer::produce;75.31
 LowPtGsfElectronSeedProducer::produce;66.65
 PFBlockProducer::produce;63.50
+TemplatedVertexArbitrator<edm::View<reco::Candidate>,reco::VertexCompositePtrCandidate>::produce;56.01
 InputModule;54.86
-TemplatedVertexArbitrator<edm::View<reco::Candidate>,reco::VertexCompositePtrCandidate>::produce;54.31
 PFDisplacedVertexProducer::produce;52.02
 PFDisplacedVertexCandidateProducer::produce;51.98
 DuplicateTrackMerger::produce;49.62

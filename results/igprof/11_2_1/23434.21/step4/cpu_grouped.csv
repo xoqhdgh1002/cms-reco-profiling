@@ -4,8 +4,8 @@ other;27.11
 PrimaryVertexSorter<std::vector<reco::PFCandidate,std::allocator<reco::PFCandidate>>>::produce;22.14
 citk::PFIsolationSumProducerForPUPPI::produce;17.72
 pat::PATMETProducer::produce;17.14
-HGCalElectronIDValueMapProducer::produce;17.09
-InputModule;15.61
+HGCalElectronIDValueMapProducer::produce;17.13
+InputModule;15.65
 HGCalPhotonIDValueMapProducer::produce;15.33
 PFCand_AssoMap::produce;15.26
 HGCalIsoCalculator::produceHGCalIso;14.66
@@ -34,7 +34,7 @@ PFTauPrimaryVertexProducerBase::produce;1.04
 JetFlavourClustering::produce;1.01
 PFRecoTauTagInfoProducer::produce;0.93
 DeepFlavourONNXJetTagsProducer::produce;0.82
-deep_tau::DeepTauBase::produce;0.78
+deep_tau::DeepTauBase::produce;0.74
 QGTagger::produce;0.37
 BoostedTauSeedsProducer::produce;0.34
 ElectronMVAEstimatorRun2::ElectronMVAEstimatorRun2;0.31

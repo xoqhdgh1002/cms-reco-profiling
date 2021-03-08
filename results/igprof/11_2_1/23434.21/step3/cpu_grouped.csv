@@ -1,5 +1,5 @@
 PoolOutputModule;1203.43
-cms::CkfTrackCandidateMakerBase::produceBase;454.08
+cms::CkfTrackCandidateMakerBase::produceBase;455.06
 CAHitNtupletEDProducerT<CAHitQuadrupletGenerator>::produce;448.80
 ElectronSeedProducer::produce;437.61
 PrimaryVertexProducer::produce;396.01
@@ -17,15 +17,15 @@ ClusterTPAssociationProducer::produce;67.94
 LowPtGsfElectronSeedProducer::produce;65.03
 PFDisplacedVertexCandidateProducer::produce;57.04
 PFDisplacedVertexProducer::produce;56.95
-TemplatedVertexArbitrator<edm::View<reco::Candidate>,reco::VertexCompositePtrCandidate>::produce;50.28
+TemplatedVertexArbitrator<edm::View<reco::Candidate>,reco::VertexCompositePtrCandidate>::produce;51.77
 DuplicateTrackMerger::produce;49.61
 SeedCreatorFromRegionHitsEDProducerT<SeedFromConsecutiveHitsCreator>::produce;48.44
 HGCalLayerClusterProducer::produce;43.92
 Impl<DoNothing,ImplIntermediateHitDoublets,RegionsLayersSeparate>::produce;42.80
 TrackExtrapolator::produce;41.74
 PFPileUp::produce;41.15
-InputModule;40.25
 hitTripletEDProducerT::Impl<PixelTripletHLTGenerator,hitTripletEDProducerT::ImplSeedingHitSets,hitTripletEDProducerT::DoNothing>::produce;39.69
+InputModule;39.02
 PFElecTkProducer::produce;38.34
 ConversionTrackMerger::produce;37.68
 PuppiProducer::produce;34.50

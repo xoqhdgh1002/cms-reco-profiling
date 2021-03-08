@@ -7,7 +7,7 @@ HGCalElectronIDValueMapProducer::produce;16.69
 citk::PFIsolationSumProducerForPUPPI::produce;16.40
 HGCalIsoCalculator::produceHGCalIso;15.89
 PFCand_AssoMap::produce;15.21
-InputModule;14.61
+InputModule;14.65
 HGCalPhotonIDValueMapProducer::produce;14.27
 pat::PATIsolatedTrackProducer::produce;13.88
 pat::PATMuonProducer::produce;11.51

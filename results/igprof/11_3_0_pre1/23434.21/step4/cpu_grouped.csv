@@ -31,7 +31,7 @@ DeepMETProducer::produce;2.15
 RecoTauGenericJetRegionProducer<reco::PFJet,reco::PFCandidate>::produce;1.90
 PFTauPrimaryVertexProducerBase::produce;1.16
 CandPtrProjector::produce;1.15
-JetFlavourClustering::produce;0.98
+JetFlavourClustering::produce;1.02
 deep_tau::DeepTauBase::produce;0.96
 PFRecoTauTagInfoProducer::produce;0.81
 pat::PATLostTracks::produce;0.74

@@ -238,10 +238,10 @@ if __name__ == "__main__":
                     print("skipping {}".format(release))
 
     #copy SQL outputs
-    #if os.access(args.igprof_deploy_path, os.W_OK):
-    #    os.system("./deploy.sh {}".format(args.igprof_deploy_path))
-    #else:
-    #    print("igprof-analyse sql path is not writable: {}, skipping deployment".format(args.igprof_deploy_path))
+    if os.access(args.igprof_deploy_path, os.W_OK):
+        os.system("./deploy.sh {}".format(args.igprof_deploy_path))
+    else:
+        print("igprof-analyse sql path is not writable: {}, skipping deployment".format(args.igprof_deploy_path))
 
     with open(args.outfile.replace("yaml", "md"), "w") as fi:
         fi.write(prepareReport(results))

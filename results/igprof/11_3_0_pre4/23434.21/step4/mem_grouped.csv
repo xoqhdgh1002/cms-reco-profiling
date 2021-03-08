@@ -1,0 +1,17 @@
+edm::EventProcessor::init;315228571.00
+pat::PATIsolatedTrackProducer::PATIsolatedTrackProducer;49052976.00
+PoolOutputModule;34725605.00
+other;20777621.00
+pat::PATPackedCandidateProducer::produce;10866272.00
+ObjectSelector<SingleElementCollectionSelector<std::vector<pat::TriggerObjectStandAlone,std::allocator<pat::TriggerObjectStandAlone>>,StringCutObjectSelector<pat::TriggerObjectStandAlone,false>,std::vector<pat::TriggerObjectStandAlone,std::allocator<pat::TriggerObjectStandAlone>>,std::vector<pat::TriggerObjectStandAloneconst*,std::allocator<pat::TriggerObjectStandAloneconst*>>,helper::SelectionPointerAdder<std::vector<pat::TriggerObjectStandAloneconst*,std::allocator<pat::TriggerObjectStandAloneconst*>>>>,std::vector<pat::TriggerObjectStandAlone,std::allocator<pat::TriggerObjectStandAlone>>,NonNullNumberSelector,helper::NullPostProcessor<std::vector<pat::TriggerObjectStandAlone,std::allocator<pat::TriggerObjectStandAlone>>,edm::stream::EDFilter<>>,helper::CollectionStoreManager<std::vector<pat::TriggerObjectStandAlone,std::allocator<pat::TriggerObjectStandAlone>>,helper::IteratorToObjectConverter<std::vector<pat::TriggerObjectStandAlone,std::allocator<pat::TriggerObjectStandAlone>>>>,helper::ObjectSelectorBase<std::vector<pat::TriggerObjectStandAlone,std::allocator<pat::TriggerObjectStandAlone>>,edm::stream::EDFilter<>>,reco::modules::SingleElementCollectionSelectorEventSetupInit<SingleElementCollectionSelector<std::vector<pat::TriggerObjectStandAlone,std::allocator<pat::TriggerObjectStandAlone>>,StringCutObjectSelector<pat::TriggerObjectStandAlone,false>,std::vector<pat::TriggerObjectStandAlone,std::allocator<pat::TriggerObjectStandAlone>>,std::vector<pat::TriggerObjectStandAloneconst*,std::allocator<pat::TriggerObjectStandAloneconst*>>,helper::SelectionPointerAdder<std::vector<pat::TriggerObjectStandAloneconst*,std::allocator<pat::TriggerObjectStandAloneconst*>>>>>>::ObjectSelector;7340032.00
+edm::ProducerBase::registerProducts;5018984.00
+edmplugin::SharedLibrary::SharedLibrary;5004847.00
+RecoTauProducer::RecoTauProducer;4345265.00
+DeepMETProducer::DeepMETProducer;2614800.00
+RecoTauPiZeroProducer::RecoTauPiZeroProducer;2097152.00
+edm::ProductRegistryHelper::addToRegistry;1321480.00
+JetConstituentSelector<reco::GenJet,std::vector<edm::FwdPtr<reco::GenParticle>,std::allocator<edm::FwdPtr<reco::GenParticle>>>>::JetConstituentSelector;1048576.00
+InputModule;779816.00
+DeepMETProducer::produce;321856.00
+VersionedIdProducer<edm::Ptr<reco::Photon>,VersionedSelector<edm::Ptr<reco::Photon>>>::VersionedIdProducer;262144.00
+ElectronMVAEstimatorRun2::ElectronMVAEstimatorRun2;176928.00
