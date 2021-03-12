@@ -147,7 +147,7 @@ def parseStep(dirname, release, arch, wf, step, run_igprof_analysis=True, igprof
     peak_rss = getPeakRSS(tmi)
     file_size = getFileSize(rootfile)
 
-    igprof_outpath = "results/igprof/{}/{}/{}".format(release.replace("CMSSW_", ""), wf, step)
+    igprof_outpath = "results/igprof/{}/{}/{}".format(release, wf, step)
     igprof_cpu_file = os.path.join(igprof_outpath, "cpu.txt.bz2")
     igprof_mem_file = os.path.join(igprof_outpath, "mem.txt.bz2")
 
