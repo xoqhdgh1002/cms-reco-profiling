@@ -97,7 +97,8 @@ CMSSW_11_3_0_pre1_slc7_amd64_gcc900:
 CMSSW_11_3_0_pre2_slc7_amd64_gcc900:
   23434p21:
     step3:
-      circles: http://cms-reco-profiling.web.cern.ch/cms-reco-profiling/circles/piechart.php?local=false&dataset=CMSSW_11_3_0_pre2%2Fslc7_amd64_gcc900%2F23434.21%2Fstep3_circles&resource=mem_alloc&colours=default&groups=reco_PhaseII&threshold=0
+      circles: http://cms-reco-profiling.web.cern.ch/cms-reco-profiling/circles/piechart.php?local=false&dataset=CMSSW_11_3_0_pre2%2Fslc7_amd64_gcc900%2F2343
+.21%2Fstep3_circles&resource=mem_alloc&colours=default&groups=reco_PhaseII&threshold=0
       cpu_event: 84.188918
       file_size: 1894783657
       igprof_cpu: https://cms-reco-profiling.web.cern.ch/cms-reco-profiling/cgi-bin/igprof-navigator/releases/11_3_0_pre2/23434.21/step3/cpu
@@ -130,15 +131,15 @@ CMSSW_11_3_0_pre4_slc7_amd64_gcc900:
   23434p21:
     step3:
       circles: http://cms-reco-profiling.web.cern.ch/cms-reco-profiling/circles/piechart.php?local=false&dataset=CMSSW_11_3_0_pre4%2Fslc7_amd64_gcc900%2F23434.21%2Fstep3_circles&resource=mem_alloc&colours=default&groups=reco_PhaseII&threshold=0
-      cpu_event: 86.285858
+      cpu_event: 87.605919
       file_size: 1914531952
       igprof_cpu: https://cms-reco-profiling.web.cern.ch/cms-reco-profiling/cgi-bin/igprof-navigator/releases/11_3_0_pre4/23434.21/step3/cpu
       igprof_mem: https://cms-reco-profiling.web.cern.ch/cms-reco-profiling/cgi-bin/igprof-navigator/releases/11_3_0_pre4/23434.21/step3/mem
-      peak_rss: 4696.18
+      peak_rss: 4602.5
     step4:
       circles: http://cms-reco-profiling.web.cern.ch/cms-reco-profiling/circles/piechart.php?local=false&dataset=CMSSW_11_3_0_pre4%2Fslc7_amd64_gcc900%2F23434.21%2Fstep4_circles&resource=mem_alloc&colours=default&groups=reco_PhaseII&threshold=0
-      cpu_event: 4.716205
+      cpu_event: 4.623665
       file_size: 27275048
       igprof_cpu: https://cms-reco-profiling.web.cern.ch/cms-reco-profiling/cgi-bin/igprof-navigator/releases/11_3_0_pre4/23434.21/step4/cpu
       igprof_mem: https://cms-reco-profiling.web.cern.ch/cms-reco-profiling/cgi-bin/igprof-navigator/releases/11_3_0_pre4/23434.21/step4/mem
-      peak_rss: 2003.17
+      peak_rss: 1981.79

@@ -103,9 +103,10 @@ def getFileSize(fn):
     return ret
 
 def makeIgProfSummaryMEM(infile, outfile):
-    os.system("igprof-analyse --top 1000 --demangle --gdb -r MEM_LIVE {} | bzip2 -9 > {}".format(infile, outfile))
-    makeIgProfGrouped(outfile, outfile.replace(".txt.bz2", "_grouped.csv"))
-    os.system("igprof-analyse --sqlite -v --demangle --gdb -r MEM_LIVE {} | python fix-igprof-sql.py | sqlite3 {}".format(infile, outfile.replace(".txt.bz2", ".sql3")))
+    if os.path.isfile(infile):
+        os.system("igprof-analyse --top 1000 --demangle --gdb -r MEM_LIVE {} | bzip2 -9 > {}".format(infile, outfile))
+        makeIgProfGrouped(outfile, outfile.replace(".txt.bz2", "_grouped.csv"))
+        os.system("igprof-analyse --sqlite -v --demangle --gdb -r MEM_LIVE {} | python fix-igprof-sql.py | sqlite3 {}".format(infile, outfile.replace(".txt.bz2", ".sql3")))
 
 def makeIgProfSummaryCPU(infile, outfile):
     os.system("igprof-analyse --top 1000 --demangle --gdb -r PERF_TICKS {} | bzip2 -9 > {}".format(infile, outfile))
@@ -154,7 +155,7 @@ def parseStep(dirname, release, arch, wf, step, run_igprof_analysis=True, igprof
         if not os.path.isdir(igprof_outpath):
             os.makedirs(igprof_outpath)
         makeIgProfSummaryCPU(os.path.join(base, "{}_igprofCPU.gz".format(step)), igprof_cpu_file)
-        makeIgProfSummaryMEM(os.path.join(base, "{}_igprofMEM.gz".format(step)), igprof_mem_file)
+        makeIgProfSummaryMEM(os.path.join(base, "{}_igprofMEM.99.gz".format(step)), igprof_mem_file)
 
     return {
         "cpu_event": cpu_event,
