@@ -7,7 +7,9 @@ import sys
 import fnmatch
 import bz2
 
+DATA_DIR="/eos/cms/store/user/cmsbuild/profiling/data/"
 DEPLOY_DIR="/eos/project/c/cmsweb/www/reco-prof/cgi-bin/data/releases"
+
 IGPROF_DEPLOY_URL="https://cms-reco-profiling.web.cern.ch/cms-reco-profiling/cgi-bin/igprof-navigator/"
 def makeCirclesURL(release, arch, wf, step):
     return "http://cms-reco-profiling.web.cern.ch/cms-reco-profiling/circles/piechart.php?local=false&dataset={release}%2F{arch}%2F{wf}%2F{step}_circles&resource=mem_alloc&colours=default&groups=reco_PhaseII&threshold=0".format(release=release, arch=arch, wf=wf, step=step)
@@ -15,12 +17,12 @@ def makeCirclesURL(release, arch, wf, step):
 def parse_args():
     import argparse
     parser = argparse.ArgumentParser()
-    parser.add_argument("--profile-data", type=str, default="/eos/cms/store/user/cmsbuild/profiling/data/", help="profiling data location")
+    parser.add_argument("--profile-data", type=str, default=DATA_DIR, help="profiling data location")
     parser.add_argument("--release-pattern", type=str, help="Glob string to filter releases that are going to be processed", default="*")
     parser.add_argument("--outfile", type=str, help="output yaml file", default="out.yaml")
     parser.add_argument("--igprof-deploy-path", type=str, help="igprof-analyse cgi-bin deployment path", default=DEPLOY_DIR)
     parser.add_argument("--igprof-deploy-url", type=str, help="igprof-analyse cgi-bin deployment URL", default=IGPROF_DEPLOY_URL)
-    parser.add_argument("--run-igprof-analysis", type=bool, help="if 1, parse the igprof results", default=False)
+    parser.add_argument("--run-igprof-analysis", type=bool, help="if 1, parse the igprof results", default=0)
     args = parser.parse_args()
     return args
 
