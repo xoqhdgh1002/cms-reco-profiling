@@ -13,21 +13,15 @@
 - CMSSW_11_2_0_pre11_slc7_amd64_gcc900
   - 23434p21
     - step3
-      - cpu_event: 86.87 s/ev
-      - peak_rss: 4426.80 MB
+      - cpu_event: 87.04 s/ev
+      - peak_rss: 3992.57 MB
       - file_size: 1958.00 MB
-      - profiles: [igprof_cpu](https://cms-reco-profiling.web.cern.ch/cms-reco-profiling/cgi-bin/igprof-navigator/releases/CMSSW_11_2_0_pre11/23434.21/step3/
-pu), [igprof_mem](https://cms-reco-profiling.web.cern.ch/cms-reco-profiling/cgi-bin/igprof-navigator/releases/CMSSW_11_2_0_pre11/23434.21/step3/mem), [circle
-](http://cms-reco-profiling.web.cern.ch/cms-reco-profiling/circles/piechart.php?local=false&dataset=CMSSW_11_2_0_pre11%2Fslc7_amd64_gcc900%2F23434.21%2Fstep3
-circles&resource=mem_alloc&colours=default&groups=reco_PhaseII&threshold=0)
+      - profiles: [igprof_cpu](https://cms-reco-profiling.web.cern.ch/cms-reco-profiling/cgi-bin/igprof-navigator/releases/CMSSW_11_2_0_pre11/23434.21/step3/cpu), [igprof_mem](https://cms-reco-profiling.web.cern.ch/cms-reco-profiling/cgi-bin/igprof-navigator/releases/CMSSW_11_2_0_pre11/23434.21/step3/mem), [circles](http://cms-reco-profiling.web.cern.ch/cms-reco-profiling/circles/piechart.php?local=false&dataset=CMSSW_11_2_0_pre11%2Fslc7_amd64_gcc900%2F23434.21%2Fstep3_circles&resource=mem_alloc&colours=default&groups=reco_PhaseII&threshold=0)
     - step4
-      - cpu_event: 4.39 s/ev
-      - peak_rss: 1946.93 MB
+      - cpu_event: 4.36 s/ev
+      - peak_rss: 1945.00 MB
       - file_size: 26.00 MB
-      - profiles: [igprof_cpu](https://cms-reco-profiling.web.cern.ch/cms-reco-profiling/cgi-bin/igprof-navigator/releases/CMSSW_11_2_0_pre11/23434.21/step4/
-pu), [igprof_mem](https://cms-reco-profiling.web.cern.ch/cms-reco-profiling/cgi-bin/igprof-navigator/releases/CMSSW_11_2_0_pre11/23434.21/step4/mem), [circle
-](http://cms-reco-profiling.web.cern.ch/cms-reco-profiling/circles/piechart.php?local=false&dataset=CMSSW_11_2_0_pre11%2Fslc7_amd64_gcc900%2F23434.21%2Fstep4
-circles&resource=mem_alloc&colours=default&groups=reco_PhaseII&threshold=0)
+      - profiles: [igprof_cpu](https://cms-reco-profiling.web.cern.ch/cms-reco-profiling/cgi-bin/igprof-navigator/releases/CMSSW_11_2_0_pre11/23434.21/step4/cpu), [igprof_mem](https://cms-reco-profiling.web.cern.ch/cms-reco-profiling/cgi-bin/igprof-navigator/releases/CMSSW_11_2_0_pre11/23434.21/step4/mem), [circles](http://cms-reco-profiling.web.cern.ch/cms-reco-profiling/circles/piechart.php?local=false&dataset=CMSSW_11_2_0_pre11%2Fslc7_amd64_gcc900%2F23434.21%2Fstep4_circles&resource=mem_alloc&colours=default&groups=reco_PhaseII&threshold=0)
 - CMSSW_11_2_0_pre9_slc7_amd64_gcc820
   - 23434p21
     - step3

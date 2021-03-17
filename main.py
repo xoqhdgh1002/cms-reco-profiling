@@ -17,7 +17,7 @@ def parse_args():
     parser = argparse.ArgumentParser()
     parser.add_argument("--profile-data", type=str, default="/eos/cms/store/user/cmsbuild/profiling/data/", help="profiling data location")
     parser.add_argument("--release-pattern", type=str, help="Glob string to filter releases that are going to be processed", default="*")
-    parser.add_argument("--outfile", type=str, help="output yaml file", default="results/summary.yaml")
+    parser.add_argument("--outfile", type=str, help="output yaml file", default="out.yaml")
     parser.add_argument("--igprof-deploy-path", type=str, help="igprof-analyse cgi-bin deployment path", default=DEPLOY_DIR)
     parser.add_argument("--igprof-deploy-url", type=str, help="igprof-analyse cgi-bin deployment URL", default=IGPROF_DEPLOY_URL)
     parser.add_argument("--run-igprof-analysis", type=bool, help="if 1, parse the igprof results", default=False)
