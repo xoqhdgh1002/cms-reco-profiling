@@ -107,12 +107,12 @@ def getFileSize(fn):
 def makeIgProfSummaryMEM(infile, outfile):
     if os.path.isfile(infile):
         os.system("igprof-analyse --top 1000 --demangle --gdb -r MEM_LIVE {} | bzip2 -9 > {}".format(infile, outfile))
-        makeIgProfGrouped(outfile, outfile.replace(".txt.bz2", "_grouped.csv"))
+        #makeIgProfGrouped(outfile, outfile.replace(".txt.bz2", "_grouped.csv"))
         os.system("igprof-analyse --sqlite -v --demangle --gdb -r MEM_LIVE {} | python fix-igprof-sql.py | sqlite3 {}".format(infile, outfile.replace(".txt.bz2", ".sql3")))
 
 def makeIgProfSummaryCPU(infile, outfile):
     os.system("igprof-analyse --top 1000 --demangle --gdb -r PERF_TICKS {} | bzip2 -9 > {}".format(infile, outfile))
-    makeIgProfGrouped(outfile, outfile.replace(".txt.bz2", "_grouped.csv"))
+    #makeIgProfGrouped(outfile, outfile.replace(".txt.bz2", "_grouped.csv"))
     os.system("igprof-analyse --sqlite -v --demangle --gdb {} | python fix-igprof-sql.py | sqlite3 {}".format(infile, outfile.replace(".txt.bz2", ".sql3")))
 
 def getReleases(dirname):
@@ -248,9 +248,9 @@ if __name__ == "__main__":
     else:
         print("igprof-analyse sql path is not writable: {}, skipping deployment".format(args.igprof_deploy_path))
 
-    with open(args.outfile.replace("yaml", "md"), "w") as fi:
+    with open(args.outfile.replace("yaml", "md"), "a") as fi:
         fi.write(prepareReport(results))
 
     #Write the summary yaml file
-    with open(args.outfile, "w") as fi:
+    with open(args.outfile, "a") as fi:
         fi.write(yaml.dump(results, default_flow_style=False))
