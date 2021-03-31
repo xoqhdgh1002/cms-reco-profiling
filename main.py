@@ -155,22 +155,34 @@ def parseStep(dirname, release, arch, wf, step, run_igprof_analysis=True, igprof
     file_size = getFileSize(rootfile)
 
     igprof_outpath = "results/igprof/{}/{}/{}".format(release, wf, step)
-    igprof_cpu_file = os.path.join(igprof_outpath, "cpu.txt.bz2")
-    igprof_mem_file = os.path.join(igprof_outpath, "mem.txt.bz2")
+    igprof_cpu_file = os.path.join(igprof_outpath, "cpu_endjob.txt.bz2")
 
     if run_igprof_analysis:
         if not os.path.isdir(igprof_outpath):
             os.makedirs(igprof_outpath)
+
         makeIgProfSummaryCPU(os.path.join(base, "{}_igprofCPU.gz".format(step)), igprof_cpu_file)
+
         lastev = workflow_numev[wf] - 1
-        makeIgProfSummaryMEM(os.path.join(base, "{}_igprofMEM.{}.gz".format(step, lastev)), igprof_mem_file)
+        midev = int(workflow_numev[wf]/2)
+
+        igprof_mem_file_last = os.path.join(igprof_outpath, "mem_live.{}.txt.bz2".format(lastev))
+        makeIgProfSummaryMEM(os.path.join(base, "{}_igprofMEM.{}.gz".format(step, lastev)), igprof_mem_file_last)
+
+        igprof_mem_file_mid = os.path.join(igprof_outpath, "mem_live.{}.txt.bz2".format(midev))
+        makeIgProfSummaryMEM(os.path.join(base, "{}_igprofMEM.{}.gz".format(step, midev)), igprof_mem_file_mid)
+        
+        igprof_mem_file_first = os.path.join(igprof_outpath, "mem_live.{}.txt.bz2".format(1))
+        makeIgProfSummaryMEM(os.path.join(base, "{}_igprofMEM.{}.gz".format(step, 1)), igprof_mem_file_first)
 
     return {
         "cpu_event": cpu_event,
         "peak_rss": peak_rss,
         "file_size": file_size,
         "igprof_cpu": igprof_deploy_url + igprof_cpu_file.replace("results/igprof", "releases").replace(".txt.bz2", ""),
-        "igprof_mem": igprof_deploy_url + igprof_mem_file.replace("results/igprof", "releases").replace(".txt.bz2", ""),
+        "igprof_mem_last": igprof_deploy_url + igprof_mem_file_last.replace("results/igprof", "releases").replace(".txt.bz2", ""),
+        "igprof_mem_mid": igprof_deploy_url + igprof_mem_file_mid.replace("results/igprof", "releases").replace(".txt.bz2", ""),
+        "igprof_mem_first": igprof_deploy_url + igprof_mem_file_first.replace("results/igprof", "releases").replace(".txt.bz2", ""),
         "circles": makeCirclesURL(release, arch, wf, step)
     }
 
@@ -221,7 +233,7 @@ def prepareReport(results):
                 #Write out the igprof and circles links                
                 out += "      - profiles: "
                 prof_links = []
-                for item in ["igprof_cpu", "igprof_mem", "circles"]:
+                for item in ["igprof_cpu", "igprof_mem_first", "igprof_mem_mid", "igprof_mem_last", "circles"]:
                     value = results[release][wf][step][item]
                     prof_links.append("[{}]({})".format(item, value))
                 out += ", ".join(prof_links) + "\n"
