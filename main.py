@@ -14,6 +14,11 @@ IGPROF_DEPLOY_URL="https://cms-reco-profiling.web.cern.ch/cms-reco-profiling/cgi
 def makeCirclesURL(release, arch, wf, step):
     return "http://cms-reco-profiling.web.cern.ch/cms-reco-profiling/circles/piechart.php?local=false&dataset={release}%2F{arch}%2F{wf}%2F{step}_circles&resource=time_thread&colours=default&groups=reco_PhaseII&threshold=0".format(release=release, arch=arch, wf=wf, step=step)
 
+workflow_numev = {
+    "23434.21": 100,
+    "11834.21": 400
+}
+
 def parse_args():
     import argparse
     parser = argparse.ArgumentParser()
@@ -157,7 +162,8 @@ def parseStep(dirname, release, arch, wf, step, run_igprof_analysis=True, igprof
         if not os.path.isdir(igprof_outpath):
             os.makedirs(igprof_outpath)
         makeIgProfSummaryCPU(os.path.join(base, "{}_igprofCPU.gz".format(step)), igprof_cpu_file)
-        makeIgProfSummaryMEM(os.path.join(base, "{}_igprofMEM.99.gz".format(step)), igprof_mem_file)
+        lastev = workflow_numev[wf] - 1
+        makeIgProfSummaryMEM(os.path.join(base, "{}_igprofMEM.{}.gz".format(step, lastev)), igprof_mem_file)
 
     return {
         "cpu_event": cpu_event,
