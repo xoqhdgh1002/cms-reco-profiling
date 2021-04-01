@@ -205,7 +205,7 @@ def parseRelease(dirname, release, arch, **kwargs):
         ret[wf.replace(".", "p")] = ret_wf
     return ret
 
-def isValidScramArch(arch_string):
+def isValidScramArch(release, arch_string):
     return arch_string.startswith("slc")
 
 def formatValue(item, value):
@@ -249,7 +249,7 @@ if __name__ == "__main__":
     results = {}
     for release in releases:
         for arch in os.listdir(os.path.join(args.profile_data, release)):
-            if isValidScramArch(arch):
+            if isValidScramArch(release, arch):
                 if fnmatch.fnmatch(release, args.release_pattern):
                     parsed = parseRelease(
                         args.profile_data, release, arch,
