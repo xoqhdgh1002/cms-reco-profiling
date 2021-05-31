@@ -9,11 +9,12 @@ import bz2
 
 DATA_DIR="/eos/cms/store/user/cmsbuild/profiling/data/"
 DEPLOY_DIR="/eos/project/c/cmsweb/www/reco-prof/cgi-bin/data/releases"
-
 IGPROF_DEPLOY_URL="https://cms-reco-profiling.web.cern.ch/cms-reco-profiling/cgi-bin/igprof-navigator/"
+
 def makeCirclesURL(release, arch, wf, step):
     return "http://cms-reco-profiling.web.cern.ch/cms-reco-profiling/circles/piechart.php?local=false&dataset={release}%2F{arch}%2F{wf}%2F{step}_circles&resource=time_thread&colours=default&groups=reco_PhaseII&threshold=0".format(release=release, arch=arch, wf=wf, step=step)
 
+#number of events per workflow, must be the same as used when launching the job via jenkins
 workflow_numev = {
     "23434.21": 100,
     "11834.21": 400
@@ -23,11 +24,10 @@ def parse_args():
     import argparse
     parser = argparse.ArgumentParser()
     parser.add_argument("--profile-data", type=str, default=DATA_DIR, help="profiling data location")
-    parser.add_argument("--release-pattern", type=str, help="Glob string to filter releases that are going to be processed", default="*")
+    parser.add_argument("--releases", type=str, help="comma-separated list of releases to process, '*' for all", default="*")
     parser.add_argument("--outfile", type=str, help="output yaml file", default="out.yaml")
     parser.add_argument("--igprof-deploy-path", type=str, help="igprof-analyse cgi-bin deployment path", default=DEPLOY_DIR)
     parser.add_argument("--igprof-deploy-url", type=str, help="igprof-analyse cgi-bin deployment URL", default=IGPROF_DEPLOY_URL)
-    parser.add_argument("--run-igprof-analysis", type=bool, help="if 1, parse the igprof results", default=0)
     args = parser.parse_args()
     return args
 
@@ -243,22 +243,22 @@ def prepareReport(results):
 if __name__ == "__main__":
     args = parse_args()
 
-    releases = getReleases(args.profile_data)
+    if args.releases == "*":
+        releases = getReleases(args.profile_data)
+    else:
+        releases = args.releases.split(",")
 
     #prepare the results
     results = {}
     for release in releases:
         for arch in os.listdir(os.path.join(args.profile_data, release)):
             if isValidScramArch(release, arch):
-                if fnmatch.fnmatch(release, args.release_pattern):
-                    parsed = parseRelease(
-                        args.profile_data, release, arch,
-                        run_igprof_analysis=args.run_igprof_analysis,
-                        igprof_deploy_url=args.igprof_deploy_url,
-                    )
-                    results[release + "_" + arch] = parsed
-                else:
-                    print("skipping {}".format(release))
+                parsed = parseRelease(
+                    args.profile_data, release, arch,
+                    run_igprof_analysis=True,
+                    igprof_deploy_url=args.igprof_deploy_url,
+                )
+                results[release + "_" + arch] = parsed
 
     #copy SQL outputs
     if os.access(args.igprof_deploy_path, os.W_OK):
