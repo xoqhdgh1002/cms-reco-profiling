@@ -26,7 +26,7 @@ Automatically extracts key measurements from the reco profiling outputs in EOS, 
 ```
 https://cmssdt.cern.ch/jenkins/job/release-run-reco-profiling/ -> Build with parameters
 
-1. Fill the RELEASE_FORMAT with the full release name, no spaces, no quotes, e.g. RELEASE_FORMAT=CMSSW_11_2_0_pre3
+1. Fill the RELEASE_FORMAT with the full release name, no spaces, no quotes, e.g. RELEASE_FORMAT=CMSSW_12_0_0_pre3
 2. WORKFLOW=23434.21 EVENTS=100
 3. Click Build
 ...
