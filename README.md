@@ -3,6 +3,7 @@
 Results:
 - [formatted](results/summary.md)
 - [yaml](results/summary.yaml)
+- Phase2 evolution: [csv](results/release_timing.csv), [pdf](results/release_timing.pdf)
 
 ## Updating
 Automatically extracts key measurements from the reco profiling outputs in EOS, stores the results in YAML files for future use.
@@ -22,7 +23,6 @@ Automatically extracts key measurements from the reco profiling outputs in EOS, 
 
 
 # Workflow
-
 ```
 https://cmssdt.cern.ch/jenkins/job/release-run-reco-profiling/ -> Build with parameters
 
@@ -32,4 +32,10 @@ https://cmssdt.cern.ch/jenkins/job/release-run-reco-profiling/ -> Build with par
 ...
 5. WORKFLOW=11834.21 EVENTS=400
 6. Click Build
+...
+7. Produce the profile yaml, sql with
+  ./main.py --releases CMSSW_12_0_0_pre3 --igprof
+  ./reco_times.py
 ```
+
+Make sure the [gh cli](https://github.com/cli/cli) is available under `$PATH` and cmssw git checkout is set up under `$CMSSW_BASE/src`.
