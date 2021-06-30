@@ -1,4 +1,6 @@
 #!/usr/bin/env python
+
+#Requires the github cli (gh) to be set up with cmssw in $CMSSW_BASE
 import os
 from itertools import ifilter
 import yaml
@@ -6,6 +8,9 @@ import subprocess
 import sys
 import fnmatch
 import bz2
+import subprocess
+from datetime import datetime
+import time
 
 DATA_DIR="/eos/cms/store/user/cmsbuild/profiling/data/"
 DEPLOY_DIR="/eos/project/c/cmsweb/www/reco-prof/cgi-bin/data/releases"
@@ -26,11 +31,27 @@ def parse_args():
     parser.add_argument("--profile-data", type=str, default=DATA_DIR, help="profiling data location")
     parser.add_argument("--releases", type=str, help="comma-separated list of releases to process, '*' for all", default="*")
     parser.add_argument("--outfile", type=str, help="output yaml file", default="out.yaml")
+    parser.add_argument("--igprof", action="store_true", help="run igprof analysis")
     parser.add_argument("--igprof-deploy-path", type=str, help="igprof-analyse cgi-bin deployment path", default=DEPLOY_DIR)
     parser.add_argument("--igprof-deploy-url", type=str, help="igprof-analyse cgi-bin deployment URL", default=IGPROF_DEPLOY_URL)
     args = parser.parse_args()
     return args
 
+def retry(cmd, count=3):
+    for i in range(count):
+        try:
+            out = subprocess.check_output(cmd, shell=True)
+            return out
+        except Exception as e:
+            pass
+def getReleaseDate(release):
+    pwd = os.getcwd()
+    os.chdir(os.environ["CMSSW_BASE"] + "/src")
+    time.sleep(1)
+    out = retry("gh release view {} -q '.[\"publishedAt\"]' --json publishedAt".format(release)).strip()
+    os.chdir(pwd)
+    return out
+ 
 class CallStack:
     def __init__(self, func_data, measurement):
         self.func_data = func_data
@@ -138,6 +159,11 @@ def getCPUEvent(fn):
     cpu_event = float(result.split("=")[1]) 
     return cpu_event
 
+def getPoolOutAverage(fn):
+    results = [float(l.split()[-1]) for l in grep(fn, "AODSIMoutput PoolOutputModule")]
+    avg = sum(results)/len(results) 
+    return avg
+
 def getPeakRSS(fn):
     result = grep(fn, "RSS")
     rss_vals = [float(r.split()[7]) for r in result]
@@ -151,32 +177,31 @@ def parseStep(dirname, release, arch, wf, step, run_igprof_analysis=True, igprof
         rootfile = os.path.join(base, "{}.root".format(step))
 
     cpu_event = getCPUEvent(tmi)
+    poolout_avg = getPoolOutAverage(tmi)
     peak_rss = getPeakRSS(tmi)
     file_size = getFileSize(rootfile)
 
     igprof_outpath = "results/igprof/{}/{}/{}".format(release, wf, step)
     igprof_cpu_file = os.path.join(igprof_outpath, "cpu_endjob.txt.bz2")
 
+    lastev = workflow_numev[wf] - 1
+    midev = int(workflow_numev[wf]/2)
+
+    igprof_mem_file_last = os.path.join(igprof_outpath, "mem_live.{}.txt.bz2".format(lastev))
+    igprof_mem_file_mid = os.path.join(igprof_outpath, "mem_live.{}.txt.bz2".format(midev))
+    igprof_mem_file_first = os.path.join(igprof_outpath, "mem_live.{}.txt.bz2".format(1))
     if run_igprof_analysis:
         if not os.path.isdir(igprof_outpath):
             os.makedirs(igprof_outpath)
 
         makeIgProfSummaryCPU(os.path.join(base, "{}_igprofCPU.gz".format(step)), igprof_cpu_file)
-
-        lastev = workflow_numev[wf] - 1
-        midev = int(workflow_numev[wf]/2)
-
-        igprof_mem_file_last = os.path.join(igprof_outpath, "mem_live.{}.txt.bz2".format(lastev))
         makeIgProfSummaryMEM(os.path.join(base, "{}_igprofMEM.{}.gz".format(step, lastev)), igprof_mem_file_last)
-
-        igprof_mem_file_mid = os.path.join(igprof_outpath, "mem_live.{}.txt.bz2".format(midev))
         makeIgProfSummaryMEM(os.path.join(base, "{}_igprofMEM.{}.gz".format(step, midev)), igprof_mem_file_mid)
-        
-        igprof_mem_file_first = os.path.join(igprof_outpath, "mem_live.{}.txt.bz2".format(1))
         makeIgProfSummaryMEM(os.path.join(base, "{}_igprofMEM.{}.gz".format(step, 1)), igprof_mem_file_first)
 
     return {
         "cpu_event": cpu_event,
+        "poolout_avg": poolout_avg,
         "peak_rss": peak_rss,
         "file_size": file_size,
         "igprof_cpu": igprof_deploy_url + igprof_cpu_file.replace("results/igprof", "releases").replace(".txt.bz2", ""),
@@ -203,6 +228,7 @@ def parseRelease(dirname, release, arch, **kwargs):
         ret_wf["step3"] = step3_data
         ret_wf["step4"] = step4_data
         ret[wf.replace(".", "p")] = ret_wf
+    ret["release_date"] = getReleaseDate(release)
     return ret
 
 def isValidScramArch(release, arch_string):
@@ -211,6 +237,7 @@ def isValidScramArch(release, arch_string):
 def formatValue(item, value):
     units = {
         "cpu_event": "s/ev",
+        "poolout_avg": "s/ev",
         "peak_rss": "MB",
         "file_size": "MB"
     }
@@ -218,32 +245,39 @@ def formatValue(item, value):
         value = value/1000/1000
     return "{:.2f} {}".format(value, units[item])
 
+def isWorkflow(res, s):
+    if isinstance(res[s], dict):
+        if "step3" in res[s].keys() and "step4" in res[s].keys():
+            return True
+    return False
+ 
 def prepareReport(results):
     out = ""
     for release in sorted(results.keys()):
         out += "- {}\n".format(release)
         for wf in sorted(results[release].keys()):
-            out += "  - {}\n".format(wf)
-            for step in ["step3", "step4"]:
-                out += "    - {}\n".format(step)
-                for item in ["cpu_event", "peak_rss", "file_size"]:
-                    value = results[release][wf][step][item]
-                    out += "      - {}: {}\n".format(item, formatValue(item, value))
+            if isWorkflow(results[release], wf):
+                out += "  - {}\n".format(wf)
+                for step in ["step3", "step4"]:
+                    out += "    - {}\n".format(step)
+                    for item in ["cpu_event", "poolout_avg", "peak_rss", "file_size"]:
+                        value = results[release][wf][step][item]
+                        out += "      - {}: {}\n".format(item, formatValue(item, value))
 
-                #Write out the igprof and circles links                
-                out += "      - profiles: "
-                prof_links = []
-                for item in ["igprof_cpu", "igprof_mem_first", "igprof_mem_mid", "igprof_mem_last", "circles"]:
-                    value = results[release][wf][step][item]
-                    prof_links.append("[{}]({})".format(item, value))
-                out += ", ".join(prof_links) + "\n"
+                    #Write out the igprof and circles links                
+                    out += "      - profiles: "
+                    prof_links = []
+                    for item in ["igprof_cpu", "igprof_mem_first", "igprof_mem_mid", "igprof_mem_last", "circles"]:
+                        value = results[release][wf][step][item]
+                        prof_links.append("[{}]({})".format(item, value))
+                    out += ", ".join(prof_links) + "\n"
 
     return out
  
 if __name__ == "__main__":
     args = parse_args()
 
-    if args.releases == "*":
+    if args.releases == "all":
         releases = getReleases(args.profile_data)
     else:
         releases = args.releases.split(",")
@@ -255,16 +289,17 @@ if __name__ == "__main__":
             if isValidScramArch(release, arch):
                 parsed = parseRelease(
                     args.profile_data, release, arch,
-                    run_igprof_analysis=True,
+                    run_igprof_analysis=args.igprof,
                     igprof_deploy_url=args.igprof_deploy_url,
                 )
                 results[release + "_" + arch] = parsed
 
     #copy SQL outputs
-    if os.access(args.igprof_deploy_path, os.W_OK):
-        os.system("./deploy.sh {}".format(args.igprof_deploy_path))
-    else:
-        print("igprof-analyse sql path is not writable: {}, skipping deployment".format(args.igprof_deploy_path))
+    if args.igprof:
+        if os.access(args.igprof_deploy_path, os.W_OK):
+            os.system("./deploy.sh {}".format(args.igprof_deploy_path))
+        else:
+            print("igprof-analyse sql path is not writable: {}, skipping deployment".format(args.igprof_deploy_path))
 
     with open(args.outfile.replace("yaml", "md"), "a") as fi:
         fi.write(prepareReport(results))
