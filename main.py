@@ -2,7 +2,6 @@
 
 #Requires the github cli (gh) to be set up with cmssw in $CMSSW_BASE
 import os
-from itertools import ifilter
 import yaml
 import subprocess
 import sys
@@ -22,6 +21,7 @@ def makeCirclesURL(release, arch, wf, step):
 #number of events per workflow, must be the same as used when launching the job via jenkins
 workflow_numev = {
     "23434.21": 100,
+    "34834.21": 100,
     "11834.21": 400
 }
 
@@ -218,8 +218,11 @@ def getWorkflows(dirname, release, arch):
 
 def parseRelease(dirname, release, arch, **kwargs):
     print("parsing {} {} {}".format(dirname, release, arch))
-    wfs = getWorkflows(dirname, release, arch)
+
     ret = {}
+    ret["release_date"] = getReleaseDate(release)
+
+    wfs = getWorkflows(dirname, release, arch)
     for wf in wfs:
         step3_data = parseStep(dirname, release, arch, wf, "step3", **kwargs)
         step4_data = parseStep(dirname, release, arch, wf, "step4", **kwargs)
@@ -228,7 +231,6 @@ def parseRelease(dirname, release, arch, **kwargs):
         ret_wf["step3"] = step3_data
         ret_wf["step4"] = step4_data
         ret[wf.replace(".", "p")] = ret_wf
-    ret["release_date"] = getReleaseDate(release)
     return ret
 
 def isValidScramArch(release, arch_string):
