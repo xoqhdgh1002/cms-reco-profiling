@@ -44,13 +44,6 @@ def retry(cmd, count=3):
             return out
         except Exception as e:
             pass
-def getReleaseDate(release):
-    pwd = os.getcwd()
-    os.chdir(os.environ["CMSSW_BASE"] + "/src")
-    time.sleep(1)
-    out = retry("gh release view {} -q '.[\"publishedAt\"]' --json publishedAt".format(release)).strip()
-    os.chdir(pwd)
-    return out
  
 class CallStack:
     def __init__(self, func_data, measurement):
@@ -220,7 +213,7 @@ def parseRelease(dirname, release, arch, **kwargs):
     print("parsing {} {} {}".format(dirname, release, arch))
 
     ret = {}
-    ret["release_date"] = getReleaseDate(release)
+    ret["release_date"] = ""
 
     wfs = getWorkflows(dirname, release, arch)
     for wf in wfs:

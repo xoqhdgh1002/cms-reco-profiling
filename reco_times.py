@@ -32,7 +32,9 @@ def releaseTimePlot(df):
     #    '11_3_0',
         '12_0_0_pre1',
         '12_0_0_pre2',
-        '12_0_0_pre3'
+        '12_0_0_pre3',
+        '12_0_0_pre4',
+        '12_0_0_pre5'
     ]
     
     idx_order = [list(df.label).index(p) for p in plot_order]
