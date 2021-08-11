@@ -1,6 +1,4 @@
 #!/usr/bin/env python
-
-#Requires the github cli (gh) to be set up with cmssw in $CMSSW_BASE
 import os
 import yaml
 import subprocess
@@ -29,7 +27,8 @@ def parse_args():
     import argparse
     parser = argparse.ArgumentParser()
     parser.add_argument("--profile-data", type=str, default=DATA_DIR, help="profiling data location")
-    parser.add_argument("--releases", type=str, help="comma-separated list of releases to process, '*' for all", default="*")
+    parser.add_argument("--releases", type=str, help="comma-separated list of releases to process", default=None)
+    parser.add_argument("--workflows", type=str, help="comma-separated list of workflows to process", default=None)
     parser.add_argument("--outfile", type=str, help="output yaml file", default="out.yaml")
     parser.add_argument("--igprof", action="store_true", help="run igprof analysis")
     parser.add_argument("--igprof-deploy-path", type=str, help="igprof-analyse cgi-bin deployment path", default=DEPLOY_DIR)
@@ -215,7 +214,10 @@ def parseRelease(dirname, release, arch, **kwargs):
     ret = {}
     ret["release_date"] = ""
 
-    wfs = getWorkflows(dirname, release, arch)
+    wfs = kwargs.pop("workflows", None)
+    if wfs is None:
+        wfs = getWorkflows(dirname, release, arch)
+
     for wf in wfs:
         step3_data = parseStep(dirname, release, arch, wf, "step3", **kwargs)
         step4_data = parseStep(dirname, release, arch, wf, "step4", **kwargs)
@@ -272,10 +274,15 @@ def prepareReport(results):
 if __name__ == "__main__":
     args = parse_args()
 
-    if args.releases == "all":
-        releases = getReleases(args.profile_data)
-    else:
+    releases = args.releases
+    if releases:
         releases = args.releases.split(",")
+    else:
+        releases = getReleases(args.profile_data)
+
+    workflows = args.workflows
+    if workflows:
+        workflows = workflows.split(",")
 
     #prepare the results
     results = {}
@@ -286,6 +293,7 @@ if __name__ == "__main__":
                     args.profile_data, release, arch,
                     run_igprof_analysis=args.igprof,
                     igprof_deploy_url=args.igprof_deploy_url,
+                    workflows=workflows
                 )
                 results[release + "_" + arch] = parsed
 
