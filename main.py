@@ -18,6 +18,7 @@ def makeCirclesURL(release, arch, wf, step):
 
 #number of events per workflow, must be the same as used when launching the job via jenkins
 workflow_numev = {
+    "20634.21": 50,
     "23434.21": 100,
     "34834.21": 100,
     "11834.21": 400
@@ -220,11 +221,16 @@ def parseRelease(dirname, release, arch, **kwargs):
 
     for wf in wfs:
         step3_data = parseStep(dirname, release, arch, wf, "step3", **kwargs)
-        step4_data = parseStep(dirname, release, arch, wf, "step4", **kwargs)
-       
+      
         ret_wf = {} 
         ret_wf["step3"] = step3_data
-        ret_wf["step4"] = step4_data
+        
+        try:
+            step4_data = parseStep(dirname, release, arch, wf, "step4", **kwargs)
+            ret_wf["step4"] = step4_data
+        except Exception as e:
+            print(e)
+ 
         ret[wf.replace(".", "p")] = ret_wf
     return ret
 
