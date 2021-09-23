@@ -1,26 +1,9 @@
-# Automatic reco profiling
+# Reco release profiling
 
 Results:
-- [formatted](results/summary.md)
-- [yaml](results/summary.yaml)
-- Phase2 evolution: [csv](results/release_timing.csv), [pdf](results/release_timing.pdf)
-
-## Updating
-Automatically extracts key measurements from the reco profiling outputs in EOS, stores the results in YAML files for future use.
-
-```
-[jpata@lxplus7108 reco-profiling]$ ./main.py
-```
-
-## Useful links
-- CMS reco profiling landing page (WIP): http://cms-reco-profiling.web.cern.ch/cms-reco-profiling/web
-- landing page source: https://github.com/jpata/cms-reco-profiling-web
-- EOS path: `/eos/cms/store/user/cmsbuild/profiling`
-- Jenkins jobs: https://cmssdt.cern.ch/jenkins/job/release-run-reco-profiling/
-- cmssw bot scripts that run the automatic profiling: https://github.com/cms-sw/cms-bot/tree/master/reco_profiling/
-- Custom profiling web page: https://jiwoong.web.cern.ch/jiwoong/
-- Profiling helper scripts: https://github.com/ico1036/ServiceWork/
-
+- human-readable formatted [summary](results/summary.md)
+- more detailed machine-readable [yaml](results/summary.yaml)
+- Phase2 reco evolution: [csv](results/release_timing.csv), [pdf](results/release_timing.pdf), [png](results/release_timing.png)
 
 # Workflow
 ```
@@ -39,3 +22,23 @@ https://cmssdt.cern.ch/jenkins/job/release-run-reco-profiling/ -> Build with par
 ```
 
 Make sure the [gh cli](https://github.com/cli/cli) is available under `$PATH` and cmssw git checkout is set up under `$CMSSW_BASE/src`.
+
+
+## Updating the results
+Automatically extracts key measurements from the reco profiling outputs in EOS, stores the results in YAML files for future use.
+
+```
+[jpata@lxplus7108 reco-profiling]$ ./main.py --release CMSSW_12_1_0_pre3 --igprof
+```
+
+```
+$ gh release view CMSSW_12_1_0_pre3 --json publishedAt
+```
+
+## Useful links
+- CMS reco profiling landing page (WIP): http://cms-reco-profiling.web.cern.ch/cms-reco-profiling/web
+- landing page repo: https://github.com/jpata/cms-reco-profiling-web
+- EOS path of results: `/eos/cms/store/user/cmsbuild/profiling`
+- Jenkins jobs: https://cmssdt.cern.ch/jenkins/job/release-run-reco-profiling/
+- cmssw bot scripts that run the automatic profiling: https://github.com/cms-sw/cms-bot/tree/master/reco_profiling/
+- Profiling helper scripts: https://github.com/ico1036/ServiceWork/
