@@ -1,3 +1,11 @@
+CMSSW_11_0_0_pre1_slc7_amd64_gcc820:
+  29234p21:
+    step3:
+      cpu_event: 144.535179
+      file_size: 
+      peak_rss: 6350.99
+      poolout_avg: 29.258795999999997
+  release_date: '2019-06-07T17:28:38Z'
 CMSSW_11_0_0_slc7_amd64_gcc820:
   20634p21:
     step3:
