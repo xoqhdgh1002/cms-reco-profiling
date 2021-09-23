@@ -21,11 +21,8 @@ https://cmssdt.cern.ch/jenkins/job/release-run-reco-profiling/ -> Build with par
   ./reco_times.py
 ```
 
-Make sure the [gh cli](https://github.com/cli/cli) is available under `$PATH` and cmssw git checkout is set up under `$CMSSW_BASE/src`.
-
-
 ## Updating the results
-Automatically extracts key measurements from the reco profiling outputs in EOS, stores the results in YAML files for future use.
+Automatically extracts key measurements from the reco profiling outputs in EOS, stores the results in YAML files for future use. Make sure you have done `cmsenv` somewhere beforehand.
 
 ```
 [jpata@lxplus7108 reco-profiling]$ ./main.py --release CMSSW_12_1_0_pre3 --igprof
