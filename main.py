@@ -187,7 +187,8 @@ def parseStep(dirname, release, arch, wf, step, run_igprof_analysis=True, igprof
         if not os.path.isdir(igprof_outpath):
             os.makedirs(igprof_outpath)
 
-        makeIgProfSummaryCPU(os.path.join(base, "{}_igprofCPU.gz".format(step)), igprof_cpu_file)
+        makeIgProfSummaryCPU(os.path.join(base, "{}_igprofCPU.{}.gz".format(step, lastev)), igprof_cpu_file)
+        #makeIgProfSummaryCPU(os.path.join(base, "{}_igprofCPU.gz".format(step)), igprof_cpu_file)
         makeIgProfSummaryMEM(os.path.join(base, "{}_igprofMEM.{}.gz".format(step, lastev)), igprof_mem_file_last)
         makeIgProfSummaryMEM(os.path.join(base, "{}_igprofMEM.{}.gz".format(step, midev)), igprof_mem_file_mid)
         makeIgProfSummaryMEM(os.path.join(base, "{}_igprofMEM.{}.gz".format(step, 1)), igprof_mem_file_first)
@@ -230,6 +231,12 @@ def parseRelease(dirname, release, arch, **kwargs):
             ret_wf["step4"] = step4_data
         except Exception as e:
             print(e)
+        
+        try:
+            step5_data = parseStep(dirname, release, arch, wf, "step5", **kwargs)
+            ret_wf["step5"] = step5_data
+        except Exception as e:
+            print(e)
  
         ret[wf.replace(".", "p")] = ret_wf
     return ret
@@ -261,19 +268,20 @@ def prepareReport(results):
         for wf in sorted(results[release].keys()):
             if isWorkflow(results[release], wf):
                 out += "  - {}\n".format(wf)
-                for step in ["step3", "step4"]:
-                    out += "    - {}\n".format(step)
-                    for item in ["cpu_event", "poolout_avg", "peak_rss", "file_size"]:
-                        value = results[release][wf][step][item]
-                        out += "      - {}: {}\n".format(item, formatValue(item, value))
+                for step in ["step3", "step4", "step5"]:
+                    if step in results[release][wf]:
+                        out += "    - {}\n".format(step)
+                        for item in ["cpu_event", "poolout_avg", "peak_rss", "file_size"]:
+                            value = results[release][wf][step][item]
+                            out += "      - {}: {}\n".format(item, formatValue(item, value))
 
-                    #Write out the igprof and circles links                
-                    out += "      - profiles: "
-                    prof_links = []
-                    for item in ["igprof_cpu", "igprof_mem_first", "igprof_mem_mid", "igprof_mem_last", "circles"]:
-                        value = results[release][wf][step][item]
-                        prof_links.append("[{}]({})".format(item, value))
-                    out += ", ".join(prof_links) + "\n"
+                        #Write out the igprof and circles links                
+                        out += "      - profiles: "
+                        prof_links = []
+                        for item in ["igprof_cpu", "igprof_mem_first", "igprof_mem_mid", "igprof_mem_last", "circles"]:
+                            value = results[release][wf][step][item]
+                            prof_links.append("[{}]({})".format(item, value))
+                        out += ", ".join(prof_links) + "\n"
 
     return out
  
