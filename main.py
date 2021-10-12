@@ -165,9 +165,10 @@ def getPeakRSS(fn):
 def parseStep(dirname, release, arch, wf, step, run_igprof_analysis=True, igprof_deploy_url=""):
     base = os.path.join(dirname, release, arch, wf)
     tmi = os.path.join(base, "{}_TimeMemoryInfo.log".format(step))
-    rootfile = os.path.join(base, "{}.root.unused".format(step))
+
+    rootfile = os.path.join(base, "{}.root".format(step))
     if not os.path.isfile(rootfile):
-        rootfile = os.path.join(base, "{}.root".format(step))
+        rootfile = os.path.join(base, "{}.root.unused".format(step))
 
     cpu_event = getCPUEvent(tmi)
     poolout_avg = getPoolOutAverage(tmi)
@@ -187,8 +188,7 @@ def parseStep(dirname, release, arch, wf, step, run_igprof_analysis=True, igprof
         if not os.path.isdir(igprof_outpath):
             os.makedirs(igprof_outpath)
 
-        makeIgProfSummaryCPU(os.path.join(base, "{}_igprofCPU.{}.gz".format(step, lastev)), igprof_cpu_file)
-        #makeIgProfSummaryCPU(os.path.join(base, "{}_igprofCPU.gz".format(step)), igprof_cpu_file)
+        makeIgProfSummaryCPU(os.path.join(base, "{}_igprofCPU.gz".format(step)), igprof_cpu_file)
         makeIgProfSummaryMEM(os.path.join(base, "{}_igprofMEM.{}.gz".format(step, lastev)), igprof_mem_file_last)
         makeIgProfSummaryMEM(os.path.join(base, "{}_igprofMEM.{}.gz".format(step, midev)), igprof_mem_file_mid)
         makeIgProfSummaryMEM(os.path.join(base, "{}_igprofMEM.{}.gz".format(step, 1)), igprof_mem_file_first)
