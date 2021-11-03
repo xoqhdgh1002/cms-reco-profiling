@@ -3,7 +3,7 @@
 Results:
 - human-readable formatted [summary](results/summary.md)
 - more detailed machine-readable [yaml](results/summary.yaml)
-- Phase2 reco evolution: [csv](results/release_timing.csv), [pdf](results/release_timing.pdf), [png](results/release_timing.png)
+- reco time evolution: [csv](results/release_timing.csv), [Phase2](results/release_timing.pdf), [Run3](results/release_timing_run3.pdf)
 
 # Workflow
 ```
