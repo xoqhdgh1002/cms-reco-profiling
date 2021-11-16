@@ -3,13 +3,13 @@
 Results:
 - human-readable formatted [summary](results/summary.md)
 - more detailed machine-readable [yaml](results/summary.yaml)
-- reco time evolution: [csv](results/release_timing.csv), [Phase2](results/release_timing.pdf), [Run3](results/release_timing_run3.pdf)
+- reco time evolution: [full csv](results/release_timing.csv), [Phase2 major](results/major_release_timing.pdf), [Phase2](results/release_timing.pdf), [Run3](results/release_timing_run3.pdf)
 
 # Workflow
 ```
 https://cmssdt.cern.ch/jenkins/job/release-run-reco-profiling/ -> Build with parameters
 
-1. Fill the RELEASE_FORMAT with the full release name, no spaces, no quotes, e.g. RELEASE_FORMAT=CMSSW_12_0_0_pre3
+1. Fill the RELEASE_FORMAT with the full release name, no whitespace, no quotes, e.g. RELEASE_FORMAT=CMSSW_12_0_0_pre3
 2. WORKFLOW=34834.21 EVENTS=100
 3. Click Build
 ...
