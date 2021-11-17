@@ -51,5 +51,5 @@ with open('results/summary.yaml') as fi:
     df["label"] = labels
     df["workflow"] = workflows
 
-    df = df.sort_values(by="release_date")
+    df = df.sort_values(by=["release_date", "workflow"])
     df.to_csv("results/release_timing.csv") 
