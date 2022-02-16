@@ -32,6 +32,7 @@ def parse_args():
     parser.add_argument("--workflows", type=str, help="comma-separated list of workflows to process", default=None)
     parser.add_argument("--outfile", type=str, help="output yaml file", default="out.yaml")
     parser.add_argument("--igprof", action="store_true", help="run igprof analysis")
+    parser.add_argument("--deploy", action="store_true", help="deploy the sql files")
     parser.add_argument("--igprof-deploy-path", type=str, help="igprof-analyse cgi-bin deployment path", default=DEPLOY_DIR)
     parser.add_argument("--igprof-deploy-url", type=str, help="igprof-analyse cgi-bin deployment URL", default=IGPROF_DEPLOY_URL)
     args = parser.parse_args()
@@ -312,7 +313,7 @@ if __name__ == "__main__":
                 results[release + "_" + arch] = parsed
 
     #copy SQL outputs
-    if args.igprof:
+    if args.igprof and args.deploy:
         if os.access(args.igprof_deploy_path, os.W_OK):
             os.system("./deploy.sh {}".format(args.igprof_deploy_path))
         else:
