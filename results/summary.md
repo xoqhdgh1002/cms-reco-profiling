@@ -945,3 +945,36 @@
       - peak_rss: 2092.65 MB
       - file_size: 26.16 MB
       - profiles: [igprof_cpu](https://cms-reco-profiling.web.cern.ch/cms-reco-profiling/cgi-bin/igprof-navigator/releases/CMSSW_12_3_0_pre4/34834.21/step4/cpu_endjob), [igprof_mem_first](https://cms-reco-profiling.web.cern.ch/cms-reco-profiling/cgi-bin/igprof-navigator/releases/CMSSW_12_3_0_pre4/34834.21/step4/mem_live.1), [igprof_mem_mid](https://cms-reco-profiling.web.cern.ch/cms-reco-profiling/cgi-bin/igprof-navigator/releases/CMSSW_12_3_0_pre4/34834.21/step4/mem_live.50), [igprof_mem_last](https://cms-reco-profiling.web.cern.ch/cms-reco-profiling/cgi-bin/igprof-navigator/releases/CMSSW_12_3_0_pre4/34834.21/step4/mem_live.99), [circles](http://cms-reco-profiling.web.cern.ch/cms-reco-profiling/circles/piechart.php?local=false&dataset=CMSSW_12_3_0_pre4%2Fslc7_amd64_gcc10%2F34834.21%2Fstep4_circles&resource=time_thread&colours=default&groups=reco_PhaseII&threshold=0)
+- CMSSW_12_3_0_pre5_slc7_amd64_gcc10
+  - 11834p21
+    - step3
+      - cpu_event: 11.78 s/ev
+      - poolout_avg: 0.25 s/ev
+      - peak_rss: 2562.58 MB
+      - file_size: 267.65 MB
+      - profiles: [igprof_cpu](https://cms-reco-profiling.web.cern.ch/cms-reco-profiling/cgi-bin/igprof-navigator/releases/CMSSW_12_3_0_pre5/11834.21/step3/cpu_endjob), [igprof_mem_first](https://cms-reco-profiling.web.cern.ch/cms-reco-profiling/cgi-bin/igprof-navigator/releases/CMSSW_12_3_0_pre5/11834.21/step3/mem_live.1), [igprof_mem_mid](https://cms-reco-profiling.web.cern.ch/cms-reco-profiling/cgi-bin/igprof-navigator/releases/CMSSW_12_3_0_pre5/11834.21/step3/mem_live.200), [igprof_mem_last](https://cms-reco-profiling.web.cern.ch/cms-reco-profiling/cgi-bin/igprof-navigator/releases/CMSSW_12_3_0_pre5/11834.21/step3/mem_live.399), [circles](http://cms-reco-profiling.web.cern.ch/cms-reco-profiling/circles/piechart.php?local=false&dataset=CMSSW_12_3_0_pre5%2Fslc7_amd64_gcc10%2F11834.21%2Fstep3_circles&resource=time_thread&colours=default&groups=reco_PhaseII&threshold=0)
+    - step4
+      - cpu_event: 0.65 s/ev
+      - poolout_avg: 0.05 s/ev
+      - peak_rss: 1784.61 MB
+      - file_size: 44.67 MB
+      - profiles: [igprof_cpu](https://cms-reco-profiling.web.cern.ch/cms-reco-profiling/cgi-bin/igprof-navigator/releases/CMSSW_12_3_0_pre5/11834.21/step4/cpu_endjob), [igprof_mem_first](https://cms-reco-profiling.web.cern.ch/cms-reco-profiling/cgi-bin/igprof-navigator/releases/CMSSW_12_3_0_pre5/11834.21/step4/mem_live.1), [igprof_mem_mid](https://cms-reco-profiling.web.cern.ch/cms-reco-profiling/cgi-bin/igprof-navigator/releases/CMSSW_12_3_0_pre5/11834.21/step4/mem_live.200), [igprof_mem_last](https://cms-reco-profiling.web.cern.ch/cms-reco-profiling/cgi-bin/igprof-navigator/releases/CMSSW_12_3_0_pre5/11834.21/step4/mem_live.399), [circles](http://cms-reco-profiling.web.cern.ch/cms-reco-profiling/circles/piechart.php?local=false&dataset=CMSSW_12_3_0_pre5%2Fslc7_amd64_gcc10%2F11834.21%2Fstep4_circles&resource=time_thread&colours=default&groups=reco_PhaseII&threshold=0)
+    - step5
+      - cpu_event: 0.11 s/ev
+      - poolout_avg: 0.01 s/ev
+      - peak_rss: 1400.82 MB
+      - file_size: 5.92 MB
+      - profiles: [igprof_cpu](https://cms-reco-profiling.web.cern.ch/cms-reco-profiling/cgi-bin/igprof-navigator/releases/CMSSW_12_3_0_pre5/11834.21/step5/cpu_endjob), [igprof_mem_first](https://cms-reco-profiling.web.cern.ch/cms-reco-profiling/cgi-bin/igprof-navigator/releases/CMSSW_12_3_0_pre5/11834.21/step5/mem_live.1), [igprof_mem_mid](https://cms-reco-profiling.web.cern.ch/cms-reco-profiling/cgi-bin/igprof-navigator/releases/CMSSW_12_3_0_pre5/11834.21/step5/mem_live.200), [igprof_mem_last](https://cms-reco-profiling.web.cern.ch/cms-reco-profiling/cgi-bin/igprof-navigator/releases/CMSSW_12_3_0_pre5/11834.21/step5/mem_live.399), [circles](http://cms-reco-profiling.web.cern.ch/cms-reco-profiling/circles/piechart.php?local=false&dataset=CMSSW_12_3_0_pre5%2Fslc7_amd64_gcc10%2F11834.21%2Fstep5_circles&resource=time_thread&colours=default&groups=reco_PhaseII&threshold=0)
+  - 34834p21
+    - step3
+      - cpu_event: 56.66 s/ev
+      - poolout_avg: 4.84 s/ev
+      - peak_rss: 3166.53 MB
+      - file_size: 595.80 MB
+      - profiles: [igprof_cpu](https://cms-reco-profiling.web.cern.ch/cms-reco-profiling/cgi-bin/igprof-navigator/releases/CMSSW_12_3_0_pre5/34834.21/step3/cpu_endjob), [igprof_mem_first](https://cms-reco-profiling.web.cern.ch/cms-reco-profiling/cgi-bin/igprof-navigator/releases/CMSSW_12_3_0_pre5/34834.21/step3/mem_live.1), [igprof_mem_mid](https://cms-reco-profiling.web.cern.ch/cms-reco-profiling/cgi-bin/igprof-navigator/releases/CMSSW_12_3_0_pre5/34834.21/step3/mem_live.50), [igprof_mem_last](https://cms-reco-profiling.web.cern.ch/cms-reco-profiling/cgi-bin/igprof-navigator/releases/CMSSW_12_3_0_pre5/34834.21/step3/mem_live.99), [circles](http://cms-reco-profiling.web.cern.ch/cms-reco-profiling/circles/piechart.php?local=false&dataset=CMSSW_12_3_0_pre5%2Fslc7_amd64_gcc10%2F34834.21%2Fstep3_circles&resource=time_thread&colours=default&groups=reco_PhaseII&threshold=0)
+    - step4
+      - cpu_event: 4.79 s/ev
+      - poolout_avg: 0.13 s/ev
+      - peak_rss: 1967.90 MB
+      - file_size: 26.36 MB
+      - profiles: [igprof_cpu](https://cms-reco-profiling.web.cern.ch/cms-reco-profiling/cgi-bin/igprof-navigator/releases/CMSSW_12_3_0_pre5/34834.21/step4/cpu_endjob), [igprof_mem_first](https://cms-reco-profiling.web.cern.ch/cms-reco-profiling/cgi-bin/igprof-navigator/releases/CMSSW_12_3_0_pre5/34834.21/step4/mem_live.1), [igprof_mem_mid](https://cms-reco-profiling.web.cern.ch/cms-reco-profiling/cgi-bin/igprof-navigator/releases/CMSSW_12_3_0_pre5/34834.21/step4/mem_live.50), [igprof_mem_last](https://cms-reco-profiling.web.cern.ch/cms-reco-profiling/cgi-bin/igprof-navigator/releases/CMSSW_12_3_0_pre5/34834.21/step4/mem_live.99), [circles](http://cms-reco-profiling.web.cern.ch/cms-reco-profiling/circles/piechart.php?local=false&dataset=CMSSW_12_3_0_pre5%2Fslc7_amd64_gcc10%2F34834.21%2Fstep4_circles&resource=time_thread&colours=default&groups=reco_PhaseII&threshold=0)
