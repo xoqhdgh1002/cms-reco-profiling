@@ -26,6 +26,7 @@ with open('results/summary.yaml') as fi:
     output_times = []
     labels = []
     workflows = []
+    peak_rss = []
     for rel in releases:
         print(rel)
         for wf in ["11834p21", "29234p21", "20634p21", "23434p21", "34834p21"]:
@@ -38,6 +39,7 @@ with open('results/summary.yaml') as fi:
                 reco_times.append(tev - tout)
                 total_times.append(tev)
                 output_times.append(tout)
+                peak_rss.append(data[rel][wf]["step3"]["peak_rss"])
                 workflows.append(wf)
 
                 label = rel.replace("CMSSW_", "")
@@ -50,6 +52,7 @@ with open('results/summary.yaml') as fi:
     df["output_time"] = output_times
     df["label"] = labels
     df["workflow"] = workflows
+    df["peak_rss"] = peak_rss
 
     df = df.sort_values(by=["release_date", "workflow"])
     df.to_csv("results/release_timing.csv") 
