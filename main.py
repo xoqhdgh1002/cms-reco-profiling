@@ -18,6 +18,7 @@ def makeCirclesURL(release, arch, wf, step):
 
 #number of events per workflow, must be the same as used when launching the job via jenkins
 workflow_numev = {
+    "136.889": 5000,
     "20634.21": 50,
     "23434.21": 100,
     "34834.21": 100,
@@ -154,9 +155,12 @@ def getCPUEvent(fn):
     cpu_event = float(result.split("=")[1]) 
     return cpu_event
 
-def getPoolOutAverage(fn):
-    results = [float(l.split()[-1]) for l in grep(fn, "AODSIMoutput PoolOutputModule")]
-    avg = sum(results)/len(results) 
+def getPoolOutAverage(fn, outpath="AODSIMoutput"):
+    print(fn)
+    results = [float(l.split()[-1]) for l in grep(fn, "{} PoolOutputModule".format(outpath))]
+    avg = 0
+    if len(results)>0:
+        avg = sum(results)/len(results) 
     return avg
 
 def getPeakRSS(fn):
@@ -164,7 +168,7 @@ def getPeakRSS(fn):
     rss_vals = [float(r.split()[7]) for r in result]
     return max(rss_vals)
 
-def parseStep(dirname, release, arch, wf, step, run_igprof_analysis=True, igprof_deploy_url=""):
+def parseStep(dirname, release, arch, wf, step, run_igprof_analysis=True, igprof_deploy_url="", outpath="AODSIMoutput"):
     base = os.path.join(dirname, release, arch, wf)
     tmi = os.path.join(base, "{}_TimeMemoryInfo.log".format(step))
 
@@ -173,7 +177,7 @@ def parseStep(dirname, release, arch, wf, step, run_igprof_analysis=True, igprof
         rootfile = os.path.join(base, "{}.root.unused".format(step))
 
     cpu_event = getCPUEvent(tmi)
-    poolout_avg = getPoolOutAverage(tmi)
+    poolout_avg = getPoolOutAverage(tmi, outpath)
     peak_rss = getPeakRSS(tmi)
     file_size = getFileSize(rootfile)
 
@@ -309,7 +313,7 @@ if __name__ == "__main__":
                     args.profile_data, release, arch,
                     run_igprof_analysis=args.igprof,
                     igprof_deploy_url=args.igprof_deploy_url,
-                    workflows=workflows
+                    workflows=workflows,
                 )
                 results[release + "_" + arch] = parsed
 
