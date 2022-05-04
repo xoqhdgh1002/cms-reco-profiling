@@ -1705,6 +1705,71 @@ CMSSW_12_3_0_pre6_slc7_amd64_gcc10:
       peak_rss: 2143.07
       poolout_avg: 0.13349338699999996
   release_date: '2022-03-10T15:38:09Z'
+CMSSW_12_3_0_slc7_amd64_gcc10:
+  11834p21:
+    step3:
+      circles: http://cms-reco-profiling.web.cern.ch/cms-reco-profiling/circles/piechart.php?local=false&dataset=CMSSW_12_3_0%2Fslc7_amd64_gcc10%2F11834.21%2Fstep3_circles&resource=time_thread&colours=default&groups=reco_PhaseII&threshold=0
+      cpu_event: 11.974491
+      file_size: 266312524
+      igprof_cpu: https://cms-reco-profiling.web.cern.ch/cms-reco-profiling/cgi-bin/igprof-navigator/releases/CMSSW_12_3_0/11834.21/step3/cpu_endjob
+      igprof_mem_first: https://cms-reco-profiling.web.cern.ch/cms-reco-profiling/cgi-bin/igprof-navigator/releases/CMSSW_12_3_0/11834.21/step3/mem_live.1
+      igprof_mem_last: https://cms-reco-profiling.web.cern.ch/cms-reco-profiling/cgi-bin/igprof-navigator/releases/CMSSW_12_3_0/11834.21/step3/mem_live.399
+      igprof_mem_mid: https://cms-reco-profiling.web.cern.ch/cms-reco-profiling/cgi-bin/igprof-navigator/releases/CMSSW_12_3_0/11834.21/step3/mem_live.200
+      peak_rss: 2448.83
+      poolout_avg: 0.254376135
+    step4:
+      circles: http://cms-reco-profiling.web.cern.ch/cms-reco-profiling/circles/piechart.php?local=false&dataset=CMSSW_12_3_0%2Fslc7_amd64_gcc10%2F11834.21%2Fstep4_circles&resource=time_thread&colours=default&groups=reco_PhaseII&threshold=0
+      cpu_event: 0.693893
+      file_size: 44331823
+      igprof_cpu: https://cms-reco-profiling.web.cern.ch/cms-reco-profiling/cgi-bin/igprof-navigator/releases/CMSSW_12_3_0/11834.21/step4/cpu_endjob
+      igprof_mem_first: https://cms-reco-profiling.web.cern.ch/cms-reco-profiling/cgi-bin/igprof-navigator/releases/CMSSW_12_3_0/11834.21/step4/mem_live.1
+      igprof_mem_last: https://cms-reco-profiling.web.cern.ch/cms-reco-profiling/cgi-bin/igprof-navigator/releases/CMSSW_12_3_0/11834.21/step4/mem_live.399
+      igprof_mem_mid: https://cms-reco-profiling.web.cern.ch/cms-reco-profiling/cgi-bin/igprof-navigator/releases/CMSSW_12_3_0/11834.21/step4/mem_live.200
+      peak_rss: 1770.44
+      poolout_avg: 0.058198110875000014
+    step5:
+      circles: http://cms-reco-profiling.web.cern.ch/cms-reco-profiling/circles/piechart.php?local=false&dataset=CMSSW_12_3_0%2Fslc7_amd64_gcc10%2F11834.21%2Fstep5_circles&resource=time_thread&colours=default&groups=reco_PhaseII&threshold=0
+      cpu_event: 0.105929
+      file_size: 5976819
+      igprof_cpu: https://cms-reco-profiling.web.cern.ch/cms-reco-profiling/cgi-bin/igprof-navigator/releases/CMSSW_12_3_0/11834.21/step5/cpu_endjob
+      igprof_mem_first: https://cms-reco-profiling.web.cern.ch/cms-reco-profiling/cgi-bin/igprof-navigator/releases/CMSSW_12_3_0/11834.21/step5/mem_live.1
+      igprof_mem_last: https://cms-reco-profiling.web.cern.ch/cms-reco-profiling/cgi-bin/igprof-navigator/releases/CMSSW_12_3_0/11834.21/step5/mem_live.399
+      igprof_mem_mid: https://cms-reco-profiling.web.cern.ch/cms-reco-profiling/cgi-bin/igprof-navigator/releases/CMSSW_12_3_0/11834.21/step5/mem_live.200
+      peak_rss: 1286.87
+      poolout_avg: 0.008875573474999999
+  136p889:
+    step3:
+      circles: http://cms-reco-profiling.web.cern.ch/cms-reco-profiling/circles/piechart.php?local=false&dataset=CMSSW_12_3_0%2Fslc7_amd64_gcc10%2F136.889%2Fstep3_circles&resource=time_thread&colours=default&groups=reco_PhaseII&threshold=0
+      cpu_event: 8.34411
+      file_size: 10342877800
+      igprof_cpu: https://cms-reco-profiling.web.cern.ch/cms-reco-profiling/cgi-bin/igprof-navigator/releases/CMSSW_12_3_0/136.889/step3/cpu_endjob
+      igprof_mem_first: https://cms-reco-profiling.web.cern.ch/cms-reco-profiling/cgi-bin/igprof-navigator/releases/CMSSW_12_3_0/136.889/step3/mem_live.1
+      igprof_mem_last: https://cms-reco-profiling.web.cern.ch/cms-reco-profiling/cgi-bin/igprof-navigator/releases/CMSSW_12_3_0/136.889/step3/mem_live.4999
+      igprof_mem_mid: https://cms-reco-profiling.web.cern.ch/cms-reco-profiling/cgi-bin/igprof-navigator/releases/CMSSW_12_3_0/136.889/step3/mem_live.2500
+      peak_rss: 7311.24
+      poolout_avg: 0
+  35234p21:
+    step3:
+      circles: http://cms-reco-profiling.web.cern.ch/cms-reco-profiling/circles/piechart.php?local=false&dataset=CMSSW_12_3_0%2Fslc7_amd64_gcc10%2F35234.21%2Fstep3_circles&resource=time_thread&colours=default&groups=reco_PhaseII&threshold=0
+      cpu_event: 56.619145
+      file_size: 600516713
+      igprof_cpu: https://cms-reco-profiling.web.cern.ch/cms-reco-profiling/cgi-bin/igprof-navigator/releases/CMSSW_12_3_0/35234.21/step3/cpu_endjob
+      igprof_mem_first: https://cms-reco-profiling.web.cern.ch/cms-reco-profiling/cgi-bin/igprof-navigator/releases/CMSSW_12_3_0/35234.21/step3/mem_live.1
+      igprof_mem_last: https://cms-reco-profiling.web.cern.ch/cms-reco-profiling/cgi-bin/igprof-navigator/releases/CMSSW_12_3_0/35234.21/step3/mem_live.99
+      igprof_mem_mid: https://cms-reco-profiling.web.cern.ch/cms-reco-profiling/cgi-bin/igprof-navigator/releases/CMSSW_12_3_0/35234.21/step3/mem_live.50
+      peak_rss: 3259.22
+      poolout_avg: 4.8977949
+    step4:
+      circles: http://cms-reco-profiling.web.cern.ch/cms-reco-profiling/circles/piechart.php?local=false&dataset=CMSSW_12_3_0%2Fslc7_amd64_gcc10%2F35234.21%2Fstep4_circles&resource=time_thread&colours=default&groups=reco_PhaseII&threshold=0
+      cpu_event: 4.834391
+      file_size: 26360611
+      igprof_cpu: https://cms-reco-profiling.web.cern.ch/cms-reco-profiling/cgi-bin/igprof-navigator/releases/CMSSW_12_3_0/35234.21/step4/cpu_endjob
+      igprof_mem_first: https://cms-reco-profiling.web.cern.ch/cms-reco-profiling/cgi-bin/igprof-navigator/releases/CMSSW_12_3_0/35234.21/step4/mem_live.1
+      igprof_mem_last: https://cms-reco-profiling.web.cern.ch/cms-reco-profiling/cgi-bin/igprof-navigator/releases/CMSSW_12_3_0/35234.21/step4/mem_live.99
+      igprof_mem_mid: https://cms-reco-profiling.web.cern.ch/cms-reco-profiling/cgi-bin/igprof-navigator/releases/CMSSW_12_3_0/35234.21/step4/mem_live.50
+      peak_rss: 1980.83
+      poolout_avg: 0.13237780099999996
+  release_date: '2022-04-09T07:22:30Z'
 CMSSW_12_4_0_pre1_slc7_amd64_gcc10:
   11834p21:
     step3:
@@ -1813,68 +1878,68 @@ CMSSW_12_4_0_pre2_slc7_amd64_gcc10:
       peak_rss: 1952.66
       poolout_avg: 0.13299058400000005
   release_date: '2022-03-29T17:36:09Z'
-CMSSW_12_3_0_slc7_amd64_gcc10:
+CMSSW_12_4_0_pre3_slc7_amd64_gcc10:
   11834p21:
     step3:
-      circles: http://cms-reco-profiling.web.cern.ch/cms-reco-profiling/circles/piechart.php?local=false&dataset=CMSSW_12_3_0%2Fslc7_amd64_gcc10%2F11834.21%2Fstep3_circles&resource=time_thread&colours=default&groups=reco_PhaseII&threshold=0
-      cpu_event: 11.974491
-      file_size: 266312524
-      igprof_cpu: https://cms-reco-profiling.web.cern.ch/cms-reco-profiling/cgi-bin/igprof-navigator/releases/CMSSW_12_3_0/11834.21/step3/cpu_endjob
-      igprof_mem_first: https://cms-reco-profiling.web.cern.ch/cms-reco-profiling/cgi-bin/igprof-navigator/releases/CMSSW_12_3_0/11834.21/step3/mem_live.1
-      igprof_mem_last: https://cms-reco-profiling.web.cern.ch/cms-reco-profiling/cgi-bin/igprof-navigator/releases/CMSSW_12_3_0/11834.21/step3/mem_live.399
-      igprof_mem_mid: https://cms-reco-profiling.web.cern.ch/cms-reco-profiling/cgi-bin/igprof-navigator/releases/CMSSW_12_3_0/11834.21/step3/mem_live.200
-      peak_rss: 2448.83
-      poolout_avg: 0.254376135
+      circles: http://cms-reco-profiling.web.cern.ch/cms-reco-profiling/circles/piechart.php?local=false&dataset=CMSSW_12_4_0_pre3%2Fslc7_amd64_gcc10%2F11834.21%2Fstep3_circles&resource=time_thread&colours=default&groups=reco_PhaseII&threshold=0
+      cpu_event: 11.898464
+      file_size: 266790548
+      igprof_cpu: https://cms-reco-profiling.web.cern.ch/cms-reco-profiling/cgi-bin/igprof-navigator/releases/CMSSW_12_4_0_pre3/11834.21/step3/cpu_endjob
+      igprof_mem_first: https://cms-reco-profiling.web.cern.ch/cms-reco-profiling/cgi-bin/igprof-navigator/releases/CMSSW_12_4_0_pre3/11834.21/step3/mem_live.1
+      igprof_mem_last: https://cms-reco-profiling.web.cern.ch/cms-reco-profiling/cgi-bin/igprof-navigator/releases/CMSSW_12_4_0_pre3/11834.21/step3/mem_live.399
+      igprof_mem_mid: https://cms-reco-profiling.web.cern.ch/cms-reco-profiling/cgi-bin/igprof-navigator/releases/CMSSW_12_4_0_pre3/11834.21/step3/mem_live.200
+      peak_rss: 2511.1
+      poolout_avg: 0.25542097724999996
     step4:
-      circles: http://cms-reco-profiling.web.cern.ch/cms-reco-profiling/circles/piechart.php?local=false&dataset=CMSSW_12_3_0%2Fslc7_amd64_gcc10%2F11834.21%2Fstep4_circles&resource=time_thread&colours=default&groups=reco_PhaseII&threshold=0
-      cpu_event: 0.693893
-      file_size: 44331823
-      igprof_cpu: https://cms-reco-profiling.web.cern.ch/cms-reco-profiling/cgi-bin/igprof-navigator/releases/CMSSW_12_3_0/11834.21/step4/cpu_endjob
-      igprof_mem_first: https://cms-reco-profiling.web.cern.ch/cms-reco-profiling/cgi-bin/igprof-navigator/releases/CMSSW_12_3_0/11834.21/step4/mem_live.1
-      igprof_mem_last: https://cms-reco-profiling.web.cern.ch/cms-reco-profiling/cgi-bin/igprof-navigator/releases/CMSSW_12_3_0/11834.21/step4/mem_live.399
-      igprof_mem_mid: https://cms-reco-profiling.web.cern.ch/cms-reco-profiling/cgi-bin/igprof-navigator/releases/CMSSW_12_3_0/11834.21/step4/mem_live.200
-      peak_rss: 1770.44
-      poolout_avg: 0.058198110875000014
+      circles: http://cms-reco-profiling.web.cern.ch/cms-reco-profiling/circles/piechart.php?local=false&dataset=CMSSW_12_4_0_pre3%2Fslc7_amd64_gcc10%2F11834.21%2Fstep4_circles&resource=time_thread&colours=default&groups=reco_PhaseII&threshold=0
+      cpu_event: 0.696037
+      file_size: 44392635
+      igprof_cpu: https://cms-reco-profiling.web.cern.ch/cms-reco-profiling/cgi-bin/igprof-navigator/releases/CMSSW_12_4_0_pre3/11834.21/step4/cpu_endjob
+      igprof_mem_first: https://cms-reco-profiling.web.cern.ch/cms-reco-profiling/cgi-bin/igprof-navigator/releases/CMSSW_12_4_0_pre3/11834.21/step4/mem_live.1
+      igprof_mem_last: https://cms-reco-profiling.web.cern.ch/cms-reco-profiling/cgi-bin/igprof-navigator/releases/CMSSW_12_4_0_pre3/11834.21/step4/mem_live.399
+      igprof_mem_mid: https://cms-reco-profiling.web.cern.ch/cms-reco-profiling/cgi-bin/igprof-navigator/releases/CMSSW_12_4_0_pre3/11834.21/step4/mem_live.200
+      peak_rss: 1747.07
+      poolout_avg: 0.05839370047500005
     step5:
-      circles: http://cms-reco-profiling.web.cern.ch/cms-reco-profiling/circles/piechart.php?local=false&dataset=CMSSW_12_3_0%2Fslc7_amd64_gcc10%2F11834.21%2Fstep5_circles&resource=time_thread&colours=default&groups=reco_PhaseII&threshold=0
-      cpu_event: 0.105929
-      file_size: 5976819
-      igprof_cpu: https://cms-reco-profiling.web.cern.ch/cms-reco-profiling/cgi-bin/igprof-navigator/releases/CMSSW_12_3_0/11834.21/step5/cpu_endjob
-      igprof_mem_first: https://cms-reco-profiling.web.cern.ch/cms-reco-profiling/cgi-bin/igprof-navigator/releases/CMSSW_12_3_0/11834.21/step5/mem_live.1
-      igprof_mem_last: https://cms-reco-profiling.web.cern.ch/cms-reco-profiling/cgi-bin/igprof-navigator/releases/CMSSW_12_3_0/11834.21/step5/mem_live.399
-      igprof_mem_mid: https://cms-reco-profiling.web.cern.ch/cms-reco-profiling/cgi-bin/igprof-navigator/releases/CMSSW_12_3_0/11834.21/step5/mem_live.200
-      peak_rss: 1286.87
-      poolout_avg: 0.008875573474999999
+      circles: http://cms-reco-profiling.web.cern.ch/cms-reco-profiling/circles/piechart.php?local=false&dataset=CMSSW_12_4_0_pre3%2Fslc7_amd64_gcc10%2F11834.21%2Fstep5_circles&resource=time_thread&colours=default&groups=reco_PhaseII&threshold=0
+      cpu_event: 0.104356
+      file_size: 5981299
+      igprof_cpu: https://cms-reco-profiling.web.cern.ch/cms-reco-profiling/cgi-bin/igprof-navigator/releases/CMSSW_12_4_0_pre3/11834.21/step5/cpu_endjob
+      igprof_mem_first: https://cms-reco-profiling.web.cern.ch/cms-reco-profiling/cgi-bin/igprof-navigator/releases/CMSSW_12_4_0_pre3/11834.21/step5/mem_live.1
+      igprof_mem_last: https://cms-reco-profiling.web.cern.ch/cms-reco-profiling/cgi-bin/igprof-navigator/releases/CMSSW_12_4_0_pre3/11834.21/step5/mem_live.399
+      igprof_mem_mid: https://cms-reco-profiling.web.cern.ch/cms-reco-profiling/cgi-bin/igprof-navigator/releases/CMSSW_12_4_0_pre3/11834.21/step5/mem_live.200
+      peak_rss: 1270.94
+      poolout_avg: 0.008847270100000006
   136p889:
     step3:
-      circles: http://cms-reco-profiling.web.cern.ch/cms-reco-profiling/circles/piechart.php?local=false&dataset=CMSSW_12_3_0%2Fslc7_amd64_gcc10%2F136.889%2Fstep3_circles&resource=time_thread&colours=default&groups=reco_PhaseII&threshold=0
-      cpu_event: 8.34411
-      file_size: 10342877800
-      igprof_cpu: https://cms-reco-profiling.web.cern.ch/cms-reco-profiling/cgi-bin/igprof-navigator/releases/CMSSW_12_3_0/136.889/step3/cpu_endjob
-      igprof_mem_first: https://cms-reco-profiling.web.cern.ch/cms-reco-profiling/cgi-bin/igprof-navigator/releases/CMSSW_12_3_0/136.889/step3/mem_live.1
-      igprof_mem_last: https://cms-reco-profiling.web.cern.ch/cms-reco-profiling/cgi-bin/igprof-navigator/releases/CMSSW_12_3_0/136.889/step3/mem_live.4999
-      igprof_mem_mid: https://cms-reco-profiling.web.cern.ch/cms-reco-profiling/cgi-bin/igprof-navigator/releases/CMSSW_12_3_0/136.889/step3/mem_live.2500
-      peak_rss: 7311.24
+      circles: http://cms-reco-profiling.web.cern.ch/cms-reco-profiling/circles/piechart.php?local=false&dataset=CMSSW_12_4_0_pre3%2Fslc7_amd64_gcc10%2F136.889%2Fstep3_circles&resource=time_thread&colours=default&groups=reco_PhaseII&threshold=0
+      cpu_event: 8.310378
+      file_size: 10334633329
+      igprof_cpu: https://cms-reco-profiling.web.cern.ch/cms-reco-profiling/cgi-bin/igprof-navigator/releases/CMSSW_12_4_0_pre3/136.889/step3/cpu_endjob
+      igprof_mem_first: https://cms-reco-profiling.web.cern.ch/cms-reco-profiling/cgi-bin/igprof-navigator/releases/CMSSW_12_4_0_pre3/136.889/step3/mem_live.1
+      igprof_mem_last: https://cms-reco-profiling.web.cern.ch/cms-reco-profiling/cgi-bin/igprof-navigator/releases/CMSSW_12_4_0_pre3/136.889/step3/mem_live.4999
+      igprof_mem_mid: https://cms-reco-profiling.web.cern.ch/cms-reco-profiling/cgi-bin/igprof-navigator/releases/CMSSW_12_4_0_pre3/136.889/step3/mem_live.2500
+      peak_rss: 7166.68
       poolout_avg: 0
   35234p21:
     step3:
-      circles: http://cms-reco-profiling.web.cern.ch/cms-reco-profiling/circles/piechart.php?local=false&dataset=CMSSW_12_3_0%2Fslc7_amd64_gcc10%2F35234.21%2Fstep3_circles&resource=time_thread&colours=default&groups=reco_PhaseII&threshold=0
-      cpu_event: 56.619145
-      file_size: 600516713
-      igprof_cpu: https://cms-reco-profiling.web.cern.ch/cms-reco-profiling/cgi-bin/igprof-navigator/releases/CMSSW_12_3_0/35234.21/step3/cpu_endjob
-      igprof_mem_first: https://cms-reco-profiling.web.cern.ch/cms-reco-profiling/cgi-bin/igprof-navigator/releases/CMSSW_12_3_0/35234.21/step3/mem_live.1
-      igprof_mem_last: https://cms-reco-profiling.web.cern.ch/cms-reco-profiling/cgi-bin/igprof-navigator/releases/CMSSW_12_3_0/35234.21/step3/mem_live.99
-      igprof_mem_mid: https://cms-reco-profiling.web.cern.ch/cms-reco-profiling/cgi-bin/igprof-navigator/releases/CMSSW_12_3_0/35234.21/step3/mem_live.50
-      peak_rss: 3259.22
-      poolout_avg: 4.8977949
+      circles: http://cms-reco-profiling.web.cern.ch/cms-reco-profiling/circles/piechart.php?local=false&dataset=CMSSW_12_4_0_pre3%2Fslc7_amd64_gcc10%2F35234.21%2Fstep3_circles&resource=time_thread&colours=default&groups=reco_PhaseII&threshold=0
+      cpu_event: 56.477621
+      file_size: 600359082
+      igprof_cpu: https://cms-reco-profiling.web.cern.ch/cms-reco-profiling/cgi-bin/igprof-navigator/releases/CMSSW_12_4_0_pre3/35234.21/step3/cpu_endjob
+      igprof_mem_first: https://cms-reco-profiling.web.cern.ch/cms-reco-profiling/cgi-bin/igprof-navigator/releases/CMSSW_12_4_0_pre3/35234.21/step3/mem_live.1
+      igprof_mem_last: https://cms-reco-profiling.web.cern.ch/cms-reco-profiling/cgi-bin/igprof-navigator/releases/CMSSW_12_4_0_pre3/35234.21/step3/mem_live.99
+      igprof_mem_mid: https://cms-reco-profiling.web.cern.ch/cms-reco-profiling/cgi-bin/igprof-navigator/releases/CMSSW_12_4_0_pre3/35234.21/step3/mem_live.50
+      peak_rss: 3256.58
+      poolout_avg: 4.8900388
     step4:
-      circles: http://cms-reco-profiling.web.cern.ch/cms-reco-profiling/circles/piechart.php?local=false&dataset=CMSSW_12_3_0%2Fslc7_amd64_gcc10%2F35234.21%2Fstep4_circles&resource=time_thread&colours=default&groups=reco_PhaseII&threshold=0
-      cpu_event: 4.834391
-      file_size: 26360611
-      igprof_cpu: https://cms-reco-profiling.web.cern.ch/cms-reco-profiling/cgi-bin/igprof-navigator/releases/CMSSW_12_3_0/35234.21/step4/cpu_endjob
-      igprof_mem_first: https://cms-reco-profiling.web.cern.ch/cms-reco-profiling/cgi-bin/igprof-navigator/releases/CMSSW_12_3_0/35234.21/step4/mem_live.1
-      igprof_mem_last: https://cms-reco-profiling.web.cern.ch/cms-reco-profiling/cgi-bin/igprof-navigator/releases/CMSSW_12_3_0/35234.21/step4/mem_live.99
-      igprof_mem_mid: https://cms-reco-profiling.web.cern.ch/cms-reco-profiling/cgi-bin/igprof-navigator/releases/CMSSW_12_3_0/35234.21/step4/mem_live.50
-      peak_rss: 1980.83
-      poolout_avg: 0.13237780099999996
-  release_date: '2022-04-09T07:22:30Z'
+      circles: http://cms-reco-profiling.web.cern.ch/cms-reco-profiling/circles/piechart.php?local=false&dataset=CMSSW_12_4_0_pre3%2Fslc7_amd64_gcc10%2F35234.21%2Fstep4_circles&resource=time_thread&colours=default&groups=reco_PhaseII&threshold=0
+      cpu_event: 4.822178
+      file_size: 26343181
+      igprof_cpu: https://cms-reco-profiling.web.cern.ch/cms-reco-profiling/cgi-bin/igprof-navigator/releases/CMSSW_12_4_0_pre3/35234.21/step4/cpu_endjob
+      igprof_mem_first: https://cms-reco-profiling.web.cern.ch/cms-reco-profiling/cgi-bin/igprof-navigator/releases/CMSSW_12_4_0_pre3/35234.21/step4/mem_live.1
+      igprof_mem_last: https://cms-reco-profiling.web.cern.ch/cms-reco-profiling/cgi-bin/igprof-navigator/releases/CMSSW_12_4_0_pre3/35234.21/step4/mem_live.99
+      igprof_mem_mid: https://cms-reco-profiling.web.cern.ch/cms-reco-profiling/cgi-bin/igprof-navigator/releases/CMSSW_12_4_0_pre3/35234.21/step4/mem_live.50
+      peak_rss: 1950.19
+      poolout_avg: 0.13323985900000002
+  release_date: '2022-04-21T06:54:09Z'
