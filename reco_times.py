@@ -7,8 +7,14 @@ import datetime
 import pandas as pd
 
 def stripArch(release_arch):
-    idx = release_arch.index("slc")
-    return release_arch[:idx-1]
+    if "slc" in release_arch:
+        idx = release_arch.index("slc")
+        return release_arch[:idx-1]
+    elif "el" in release_arch:
+        idx = release_arch.index("el")
+        return release_arch[:idx-1]
+    else:
+        raise Exception("Unknown arch: {}".format(release_arch))
 
 with open('results/summary.yaml') as fi:
     data = yaml.full_load(fi)
@@ -26,12 +32,14 @@ with open('results/summary.yaml') as fi:
     output_times = []
     labels = []
     workflows = []
+    mems = []
     for rel in releases:
         print(rel)
-        for wf in ["11834p21", "29234p21", "20634p21", "23434p21", "34834p21", "35234p21"]:
+        for wf in ["11834p21", "29234p21", "20634p21", "23434p21", "34834p21", "35234p21", "136p889"]:
             if wf in data[rel]: 
                 tev = data[rel][wf]["step3"]["cpu_event"]
                 tout = data[rel][wf]["step3"]["poolout_avg"]
+                mem = data[rel][wf]["step3"]["peak_rss"]
 
                 reldate = datetime.datetime.strptime(data[rel]["release_date"], "%Y-%m-%dT%H:%M:%SZ")
                 dates.append(reldate)
@@ -39,6 +47,7 @@ with open('results/summary.yaml') as fi:
                 total_times.append(tev)
                 output_times.append(tout)
                 workflows.append(wf)
+                mems.append(mem)
 
                 label = rel.replace("CMSSW_", "")
                 labels.append(label)
@@ -50,6 +59,7 @@ with open('results/summary.yaml') as fi:
     df["output_time"] = output_times
     df["label"] = labels
     df["workflow"] = workflows
+    df["mem"] = mems
 
     df = df.sort_values(by=["release_date", "workflow"])
     df.to_csv("results/release_timing.csv") 

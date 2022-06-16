@@ -248,7 +248,7 @@ def parseRelease(dirname, release, arch, **kwargs):
     return ret
 
 def isValidScramArch(release, arch_string):
-    return arch_string.startswith("slc")
+    return arch_string.startswith("slc") or arch_string.startswith("el")
 
 def formatValue(item, value):
     units = {
