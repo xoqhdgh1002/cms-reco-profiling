@@ -1,7 +1,3 @@
-import matplotlib
-matplotlib.use("Agg")
-
-import matplotlib.pyplot as plt
 import yaml
 import datetime
 import pandas as pd
@@ -35,7 +31,7 @@ with open('results/summary.yaml') as fi:
     mems = []
     for rel in releases:
         print(rel)
-        for wf in ["11834p21", "29234p21", "20634p21", "23434p21", "34834p21", "35234p21", "136p889"]:
+        for wf in ["11834p21", "29234p21", "20634p21", "23434p21", "34834p21", "35234p21", "39634p21", "136p889"]:
             if wf in data[rel]: 
                 tev = data[rel][wf]["step3"]["cpu_event"]
                 tout = data[rel][wf]["step3"]["poolout_avg"]
