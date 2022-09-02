@@ -22,6 +22,7 @@ workflow_numev = {
     "20634.21": 50,
     "23434.21": 100,
     "34834.21": 100,
+    "39634.21": 100,
     "35234.21": 100,
     "11834.21": 400
 }
@@ -227,24 +228,26 @@ def parseRelease(dirname, release, arch, **kwargs):
         wfs = getWorkflows(dirname, release, arch)
 
     for wf in wfs:
-        step3_data = parseStep(dirname, release, arch, wf, "step3", **kwargs)
+        base = os.path.join(dirname, release, arch, wf)
+        if os.path.isdir(base):
+            step3_data = parseStep(dirname, release, arch, wf, "step3", **kwargs)
       
-        ret_wf = {} 
-        ret_wf["step3"] = step3_data
-        
-        try:
-            step4_data = parseStep(dirname, release, arch, wf, "step4", **kwargs)
-            ret_wf["step4"] = step4_data
-        except Exception as e:
-            print(e)
-        
-        try:
-            step5_data = parseStep(dirname, release, arch, wf, "step5", **kwargs)
-            ret_wf["step5"] = step5_data
-        except Exception as e:
-            print(e)
+            ret_wf = {} 
+            ret_wf["step3"] = step3_data
+            
+            try:
+                step4_data = parseStep(dirname, release, arch, wf, "step4", **kwargs)
+                ret_wf["step4"] = step4_data
+            except Exception as e:
+                print(e)
+            
+            try:
+                step5_data = parseStep(dirname, release, arch, wf, "step5", **kwargs)
+                ret_wf["step5"] = step5_data
+            except Exception as e:
+                print(e)
  
-        ret[wf.replace(".", "p")] = ret_wf
+            ret[wf.replace(".", "p")] = ret_wf
     return ret
 
 def isValidScramArch(release, arch_string):
