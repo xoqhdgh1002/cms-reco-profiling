@@ -19,6 +19,7 @@ def makeCirclesURL(release, arch, wf, step):
 #number of events per workflow, must be the same as used when launching the job via jenkins
 workflow_numev = {
     "136.889": 5000,
+    "141.044": 5000,
     "20634.21": 50,
     "23434.21": 100,
     "34834.21": 100,
@@ -29,7 +30,8 @@ workflow_numev = {
     "21034.21": 100,
     "23834.21": 100,
     "24834.21": 100,
-    "25034.21": 100
+    "25034.21": 100,
+    "12634.21": 400,
 }
 
 def parse_args():
