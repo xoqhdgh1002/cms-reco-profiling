@@ -175,7 +175,7 @@ def getPoolOutAverage(fn, outpath="AODSIMoutput"):
 
 def getPeakRSS(fn):
     result = grep(fn, "RSS")
-    rss_vals = [float(r.split()[7]) for r in result]
+    rss_vals = [float(r.split()[7]) for r in result if "MemoryReport" in r]
     return max(rss_vals)
 
 def parseStep(dirname, release, arch, wf, step, run_igprof_analysis=True, igprof_deploy_url="", outpath="AODSIMoutput"):
